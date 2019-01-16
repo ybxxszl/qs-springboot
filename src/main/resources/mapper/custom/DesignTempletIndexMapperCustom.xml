@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjy.mapper.custom.DesignTempletIndexMapperCustom">
+    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignTempletIndex">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="design_templet_index_id" property="designTempletIndexId" jdbcType="VARCHAR"/>
+        <result column="design_templet_index_sign" property="designTempletIndexSign" jdbcType="INTEGER"/>
+        <result column="design_templet_index_order" property="designTempletIndexOrder" jdbcType="INTEGER"/>
+        <result column="design_exercise_id" property="designExerciseId" jdbcType="VARCHAR"/>
+        <result column="design_templet_id" property="designTempletId" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjy.mapper.custom.CheckboxAnswerCountMapperCustom">
+    <resultMap id="BaseResultMap" type="com.wjy.pojo.CheckboxAnswerCount">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="checkbox_answer_count_id" property="checkboxAnswerCountId" jdbcType="VARCHAR"/>
+        <result column="checkbox_answer_count" property="checkboxAnswerCount" jdbcType="INTEGER"/>
+        <result column="design_checkbox_option_id" property="designCheckboxOptionId" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>
