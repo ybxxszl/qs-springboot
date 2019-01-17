@@ -14,8 +14,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.System.out;
-
 /**
  * @author ybxxszl
  * @date 2019年1月13日
@@ -33,8 +31,6 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
         Map<String, Object> map = new HashMap<String, Object>();
 
         JSONObject object = WeChatUtil.getCode2Session(code);
-
-        out.println(object.toString());
 
         if (object.containsKey("session_key")) {
 

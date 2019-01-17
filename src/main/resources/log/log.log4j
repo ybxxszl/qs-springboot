@@ -1,1 +1,3 @@
 2019-01-18 07:31:39,478 [restartedMain] [com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:847)] - [INFO] {dataSource-1} inited
+2019-01-18 07:49:26,531 [Thread-5] [com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1608)] - [INFO] {dataSource-1} closed
+2019-01-18 07:50:23,148 [restartedMain] [com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:847)] - [INFO] {dataSource-1} inited
