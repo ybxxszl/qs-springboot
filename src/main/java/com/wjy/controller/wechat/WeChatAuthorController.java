@@ -44,7 +44,7 @@ public class WeChatAuthorController {
 
         try {
 
-            Map<String, Object> map = authorServiceWeChat.loginAuthor(code);
+            Map<String, Object> map = authorServiceWeChat.login(code);
 
             return JSONResult.ok(map);
 
@@ -94,7 +94,7 @@ public class WeChatAuthorController {
     }
 
     @ApiOperation(value = "微信作者注册")
-    @ApiImplicitParam(name = "registerWXAuthor", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
+    @ApiImplicitParam(name = "wxAuthorRegisterBean", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public JSONResult register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
 
@@ -112,7 +112,7 @@ public class WeChatAuthorController {
 
             UserInfoBean userInfoBean = JSONObject.parseObject(text, UserInfoBean.class);
 
-            authorServiceWeChat.registerAuthor(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
+            authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
 
             return JSONResult.ok("注册成功");
 

@@ -6,10 +6,10 @@ import java.util.Map;
 
 public interface AuthorServiceWeChat {
 
-    Map<String, Object> loginAuthor(String code) throws Exception;
+    Map<String, Object> login(String code) throws Exception;
 
     boolean verifyEmail(String wxAuthorEmail) throws Exception;
 
-    void registerAuthor(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception;
+    void register(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception;
 
 }

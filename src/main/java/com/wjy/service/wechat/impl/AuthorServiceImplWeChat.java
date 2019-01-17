@@ -14,6 +14,8 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.System.out;
+
 /**
  * @author ybxxszl
  * @date 2019年1月13日
@@ -26,15 +28,17 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
     private WXAuthorMapperCustom wxAuthorMapperCustom;
 
     @Override
-    public Map<String, Object> loginAuthor(String code) throws Exception {
+    public Map<String, Object> login(String code) throws Exception {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
         JSONObject object = WeChatUtil.getCode2Session(code);
 
+        out.println(object.toString());
+
         if (object.containsKey("session_key")) {
 
-            WXAuthor wxAuthor = wxAuthorMapperCustom.selectWXAuthorByWXAuthorOpenId(object.getString("open_id"));
+            WXAuthor wxAuthor = wxAuthorMapperCustom.selectWXAuthorByWXAuthorOpenId(object.getString("openid"));
 
             if (wxAuthor != null) {
 
@@ -50,15 +54,17 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
                 mapWXAuthor.put("wxAuthorAvatarUrl", wxAuthor.getWxAuthorAvatarUrl());
                 mapWXAuthor.put("wxAuthorOpenId", wxAuthor.getWxAuthorOpenId());
 
-                map.put("WXAuthor", mapWXAuthor);
+                map.put("wxAuthor", mapWXAuthor);
+
+                String token = TokenUtil.getToken(wxAuthor.getWxAuthorId());
+
+                map.put("token", token);
 
             }
 
             String sessionKey = object.getString("session_key");
-            String token = TokenUtil.getToken(wxAuthor.getWxAuthorId());
 
             map.put("sessionKey", sessionKey);
-            map.put("token", token);
 
         } else {
 
@@ -88,7 +94,7 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
     }
 
     @Override
-    public void registerAuthor(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception {
+    public void register(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception {
 
         String sex = "未知";
 
