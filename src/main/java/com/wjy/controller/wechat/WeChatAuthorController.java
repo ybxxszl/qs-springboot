@@ -4,7 +4,7 @@ import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.bean.offical.UserInfoBean;
 import com.wjy.bean.offical.WXAuthorRegisterBean;
-import com.wjy.pojo.JSONResult;
+import com.wjy.result.ResultBuilder;
 import com.wjy.send.mail.VerifyCode;
 import com.wjy.service.wechat.AuthorServiceWeChat;
 import com.wjy.util.RedisUtil;
@@ -40,19 +40,19 @@ public class WeChatAuthorController {
     @ApiOperation(value = "微信作者登录")
     @ApiImplicitParam(name = "code", value = "临时登录凭证", example = "1234", dataType = "String", paramType = "query", required = true)
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public JSONResult login(@Param(value = "code") String code) {
+    public ResultBuilder login(@Param(value = "code") String code) {
 
         try {
 
             Map<String, Object> map = authorServiceWeChat.login(code);
 
-            return JSONResult.ok(map);
+            return ResultBuilder.success(map, null);
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 
@@ -61,7 +61,7 @@ public class WeChatAuthorController {
     @ApiOperation(value = "发送验证码")
     @ApiImplicitParam(name = "wxAuthorEmail", value = "作者电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
     @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public JSONResult send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
+    public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
 
         try {
 
@@ -71,23 +71,23 @@ public class WeChatAuthorController {
 
                 if (verifyCode.send(wxAuthorEmail).getInteger("code") != 200) {
 
-                    JSONResult.errorMsg("验证码发送失败");
+                    throw new Exception("验证码发送失败");
 
                 }
 
             } else {
 
-                JSONResult.errorMsg("该邮箱已注册");
+                throw new Exception("该邮箱已注册");
 
             }
 
-            return JSONResult.ok("验证码发送成功");
+            return ResultBuilder.success(null, "验证码发送成功");
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 
@@ -96,7 +96,7 @@ public class WeChatAuthorController {
     @ApiOperation(value = "微信作者注册")
     @ApiImplicitParam(name = "wxAuthorRegisterBean", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public JSONResult register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
+    public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
 
         try {
 
@@ -104,7 +104,7 @@ public class WeChatAuthorController {
 
             if (!VerifyCode.equals(wxAuthorRegisterBean.getVerifyCode())) {
 
-                return JSONResult.errorMsg("验证码错误，请重新输入");
+                throw new Exception("验证码错误，请重新输入");
 
             }
 
@@ -114,13 +114,13 @@ public class WeChatAuthorController {
 
             authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
 
-            return JSONResult.ok("注册成功");
+            return ResultBuilder.success(null, "注册成功");
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 

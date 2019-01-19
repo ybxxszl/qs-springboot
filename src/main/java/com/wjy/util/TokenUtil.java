@@ -2,7 +2,6 @@ package com.wjy.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.wjy.exception.system.SystemException;
 
 import java.util.Map;
 
@@ -20,7 +19,7 @@ public class TokenUtil {
         if (object.getInteger("status") == 200) {
             token = object.getString("data");
         } else {
-            throw new SystemException("获取token失败！！！");
+            throw new Exception("获取token失败！！！");
         }
 
         return token;

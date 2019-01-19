@@ -4,7 +4,7 @@ import com.wjy.bean.offical.AuthorLoginBean;
 import com.wjy.mapper.custom.AuthorMapperCustom;
 import com.wjy.pojo.Author;
 import com.wjy.service.website.AuthorServiceWebSite;
-import com.wjy.util.UUIDUtil;
+import com.wjy.util.RandomCodeUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,7 +64,7 @@ public class AuthorServiceImplWebSite implements AuthorServiceWebSite {
 
         try {
 
-            author.setAuthorId(UUIDUtil.getUUID());
+            author.setAuthorId(RandomCodeUtil.getUUID());
 
             authorMapperCustom.insertAuthorByAuthor(author);
 

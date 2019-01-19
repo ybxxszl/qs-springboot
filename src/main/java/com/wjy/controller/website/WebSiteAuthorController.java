@@ -2,7 +2,7 @@ package com.wjy.controller.website;
 
 import com.wjy.bean.offical.AuthorLoginBean;
 import com.wjy.pojo.Author;
-import com.wjy.pojo.JSONResult;
+import com.wjy.result.ResultBuilder;
 import com.wjy.service.website.AuthorServiceWebSite;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -30,19 +30,19 @@ public class WebSiteAuthorController {
     @ApiOperation(value = "网站作者登录")
     @ApiImplicitParam(name = "authorLoginBean", value = "作者登录实体", dataType = "AuthorLoginBean", paramType = "body", required = true)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public JSONResult login(@RequestBody AuthorLoginBean authorLoginBean) {
+    public ResultBuilder login(@RequestBody AuthorLoginBean authorLoginBean) {
 
         try {
 
             Author a = authorServiceWebSite.login(authorLoginBean);
 
-            return JSONResult.ok(a);
+            return ResultBuilder.success(a, null);
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 
@@ -51,19 +51,19 @@ public class WebSiteAuthorController {
     @ApiOperation(value = "验证账号是否存在")
     @ApiImplicitParam(name = "authorAccount", value = "作者账号", example = "admin", dataType = "String", paramType = "query", required = true)
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
-    public JSONResult verify(@Param(value = "authorAccount") String authorAccount) {
+    public ResultBuilder verify(@Param(value = "authorAccount") String authorAccount) {
 
         try {
 
             int count = authorServiceWebSite.verify(authorAccount);
 
-            return JSONResult.ok(count);
+            return ResultBuilder.success(count, null);
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 
@@ -72,19 +72,19 @@ public class WebSiteAuthorController {
     @ApiOperation(value = "网站作者注册")
     @ApiImplicitParam(name = "author", value = "作者实体", dataType = "Author", paramType = "body", required = true)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public JSONResult register(@RequestBody Author author) {
+    public ResultBuilder register(@RequestBody Author author) {
 
         try {
 
             authorServiceWebSite.register(author);
 
-            return JSONResult.ok("注册成功");
+            return ResultBuilder.success(null, "注册成功");
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-            return JSONResult.errorMsg(e.getMessage());
+            return ResultBuilder.error(e);
 
         }
 
