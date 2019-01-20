@@ -10,13 +10,4 @@
         <result column="design_checkbox_order" jdbcType="INTEGER" property="designCheckboxOrder"/>
         <result column="design_checkbox_option_content" jdbcType="VARCHAR" property="designCheckboxOptionContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignCheckboxOption">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_checkbox_option_id" jdbcType="VARCHAR" property="designCheckboxOptionId"/>
-        <result column="design_checkbox_id" jdbcType="VARCHAR" property="designCheckboxId"/>
-        <result column="design_checkbox_order" jdbcType="INTEGER" property="designCheckboxOrder"/>
-        <result column="design_checkbox_option_content" jdbcType="VARCHAR" property="designCheckboxOptionContent"/>
-    </resultMap>
 </mapper>

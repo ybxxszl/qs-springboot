@@ -1,10 +1,10 @@
 package com.wjy.send.mail;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wjy.jedis.RedisUtil;
 import com.wjy.util.HttpClientUtil;
 import com.wjy.util.PropertiesUtil;
 import com.wjy.util.RandomCodeUtil;
-import com.wjy.util.RedisUtil;
 
 public class VerifyCode {
 

@@ -9,12 +9,4 @@
         <result column="single_answer_count" jdbcType="INTEGER" property="singleAnswerCount"/>
         <result column="design_single_option_id" jdbcType="VARCHAR" property="designSingleOptionId"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.SingleAnswerCount">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="single_answer_count_id" jdbcType="VARCHAR" property="singleAnswerCountId"/>
-        <result column="single_answer_count" jdbcType="INTEGER" property="singleAnswerCount"/>
-        <result column="design_single_option_id" jdbcType="VARCHAR" property="designSingleOptionId"/>
-    </resultMap>
 </mapper>

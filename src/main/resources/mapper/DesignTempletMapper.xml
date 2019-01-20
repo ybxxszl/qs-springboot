@@ -14,17 +14,4 @@
         <result column="link" jdbcType="VARCHAR" property="link"/>
         <result column="author_id" jdbcType="VARCHAR" property="authorId"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignTemplet">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_templet_id" jdbcType="VARCHAR" property="designTempletId"/>
-        <result column="design_templet_name" jdbcType="VARCHAR" property="designTempletName"/>
-        <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime"/>
-        <result column="start_recovery_time" jdbcType="TIMESTAMP" property="startRecoveryTime"/>
-        <result column="end_recovery_time" jdbcType="TIMESTAMP" property="endRecoveryTime"/>
-        <result column="state" jdbcType="INTEGER" property="state"/>
-        <result column="link" jdbcType="VARCHAR" property="link"/>
-        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
-    </resultMap>
 </mapper>

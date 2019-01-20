@@ -9,12 +9,4 @@
         <result column="checkbox_answer_count" jdbcType="INTEGER" property="checkboxAnswerCount"/>
         <result column="design_checkbox_option_id" jdbcType="VARCHAR" property="designCheckboxOptionId"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.CheckboxAnswerCount">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="checkbox_answer_count_id" jdbcType="VARCHAR" property="checkboxAnswerCountId"/>
-        <result column="checkbox_answer_count" jdbcType="INTEGER" property="checkboxAnswerCount"/>
-        <result column="design_checkbox_option_id" jdbcType="VARCHAR" property="designCheckboxOptionId"/>
-    </resultMap>
 </mapper>

@@ -8,11 +8,4 @@
         <id column="design_checkbox_id" jdbcType="VARCHAR" property="designCheckboxId"/>
         <result column="design_checkbox_content" jdbcType="VARCHAR" property="designCheckboxContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignCheckbox">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_checkbox_id" jdbcType="VARCHAR" property="designCheckboxId"/>
-        <result column="design_checkbox_content" jdbcType="VARCHAR" property="designCheckboxContent"/>
-    </resultMap>
 </mapper>

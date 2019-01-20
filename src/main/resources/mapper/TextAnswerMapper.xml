@@ -9,12 +9,4 @@
         <result column="design_text_id" jdbcType="VARCHAR" property="designTextId"/>
         <result column="text_answer_content" jdbcType="VARCHAR" property="textAnswerContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.TextAnswer">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="text_answer_id" jdbcType="VARCHAR" property="textAnswerId"/>
-        <result column="design_text_id" jdbcType="VARCHAR" property="designTextId"/>
-        <result column="text_answer_content" jdbcType="VARCHAR" property="textAnswerContent"/>
-    </resultMap>
 </mapper>

@@ -5,13 +5,24 @@
         <!--
           WARNING - @mbg.generated
         -->
-        <id column="design_templet_id" property="designTempletId" jdbcType="VARCHAR"/>
-        <result column="design_templet_name" property="designTempletName" jdbcType="VARCHAR"/>
-        <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP"/>
-        <result column="start_recovery_time" property="startRecoveryTime" jdbcType="TIMESTAMP"/>
-        <result column="end_recovery_time" property="endRecoveryTime" jdbcType="TIMESTAMP"/>
-        <result column="state" property="state" jdbcType="INTEGER"/>
-        <result column="link" property="link" jdbcType="VARCHAR"/>
-        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <id column="design_templet_id" jdbcType="VARCHAR" property="designTempletId"/>
+        <result column="design_templet_name" jdbcType="VARCHAR" property="designTempletName"/>
+        <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime"/>
+        <result column="start_recovery_time" jdbcType="TIMESTAMP" property="startRecoveryTime"/>
+        <result column="end_recovery_time" jdbcType="TIMESTAMP" property="endRecoveryTime"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
+        <result column="author_id" jdbcType="VARCHAR" property="authorId"/>
     </resultMap>
+
+    <select id="selectDesignTempletsByWXAuthorId" resultMap="BaseResultMap">
+        SELECT
+        design_templet_id, design_templet_name, finish_time, start_recovery_time, end_recovery_time, state, link,
+        author_id
+        FROM
+        design_templet
+        WHERE
+        design_templet_name LIKE #{arg0} LIMIT #{arg1}, #{arg2}
+    </select>
+
 </mapper>

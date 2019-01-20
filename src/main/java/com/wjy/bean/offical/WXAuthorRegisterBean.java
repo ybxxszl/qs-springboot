@@ -19,20 +19,6 @@ public class WXAuthorRegisterBean {
     @ApiModelProperty(value = "sessionKey", example = "sessionKey", hidden = false)
     private String sessionKey;
 
-    public WXAuthorRegisterBean() {
-        super();
-    }
-
-    public WXAuthorRegisterBean(String wxAuthorEmail, String verifyCode, String encryptedData, String iv,
-                                String sessionKey) {
-        super();
-        this.wxAuthorEmail = wxAuthorEmail;
-        this.verifyCode = verifyCode;
-        this.encryptedData = encryptedData;
-        this.iv = iv;
-        this.sessionKey = sessionKey;
-    }
-
     public String getWxAuthorEmail() {
         return wxAuthorEmail;
     }
@@ -73,10 +59,29 @@ public class WXAuthorRegisterBean {
         this.sessionKey = sessionKey;
     }
 
+    public WXAuthorRegisterBean() {
+        super();
+    }
+
+    public WXAuthorRegisterBean(String wxAuthorEmail, String verifyCode, String encryptedData, String iv,
+                                String sessionKey) {
+        super();
+        this.wxAuthorEmail = wxAuthorEmail;
+        this.verifyCode = verifyCode;
+        this.encryptedData = encryptedData;
+        this.iv = iv;
+        this.sessionKey = sessionKey;
+    }
+
     @Override
     public String toString() {
-        return "RegisterWXAuthor [wxAuthorEmail=" + wxAuthorEmail + ", verifyCode=" + verifyCode + ", encryptedData="
-                + encryptedData + ", iv=" + iv + ", sessionKey=" + sessionKey + "]";
+        return "WXAuthorRegisterBean{" +
+                "wxAuthorEmail='" + wxAuthorEmail + '\'' +
+                ", verifyCode='" + verifyCode + '\'' +
+                ", encryptedData='" + encryptedData + '\'' +
+                ", iv='" + iv + '\'' +
+                ", sessionKey='" + sessionKey + '\'' +
+                '}';
     }
 
 }

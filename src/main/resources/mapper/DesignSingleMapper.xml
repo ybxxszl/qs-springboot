@@ -8,11 +8,4 @@
         <id column="design_single_id" jdbcType="VARCHAR" property="designSingleId"/>
         <result column="design_single_content" jdbcType="VARCHAR" property="designSingleContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignSingle">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_single_id" jdbcType="VARCHAR" property="designSingleId"/>
-        <result column="design_single_content" jdbcType="VARCHAR" property="designSingleContent"/>
-    </resultMap>
 </mapper>

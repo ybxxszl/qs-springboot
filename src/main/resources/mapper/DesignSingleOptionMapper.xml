@@ -10,13 +10,4 @@
         <result column="design_single_order" jdbcType="INTEGER" property="designSingleOrder"/>
         <result column="design_single_option_content" jdbcType="VARCHAR" property="designSingleOptionContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignSingleOption">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_single_option_id" jdbcType="VARCHAR" property="designSingleOptionId"/>
-        <result column="design_single_id" jdbcType="VARCHAR" property="designSingleId"/>
-        <result column="design_single_order" jdbcType="INTEGER" property="designSingleOrder"/>
-        <result column="design_single_option_content" jdbcType="VARCHAR" property="designSingleOptionContent"/>
-    </resultMap>
 </mapper>

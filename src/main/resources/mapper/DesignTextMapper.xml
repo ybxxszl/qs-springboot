@@ -8,11 +8,4 @@
         <id column="design_text_id" jdbcType="VARCHAR" property="designTextId"/>
         <result column="design_text_content" jdbcType="VARCHAR" property="designTextContent"/>
     </resultMap>
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignText">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_text_id" jdbcType="VARCHAR" property="designTextId"/>
-        <result column="design_text_content" jdbcType="VARCHAR" property="designTextContent"/>
-    </resultMap>
 </mapper>

@@ -3,9 +3,9 @@ package com.wjy.bean.offical;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * @Date 2019/1/13
+ * @Date 2019/1/20
  * @Author ybxxszl
- * @Desc 作者登录实体
+ * @Desc 网站作者登录实体
  **/
 public class AuthorLoginBean {
 
@@ -28,6 +28,14 @@ public class AuthorLoginBean {
     }
 
     public void setAuthorPassword(String authorPassword) {
+        this.authorPassword = authorPassword;
+    }
+
+    public AuthorLoginBean() {
+    }
+
+    public AuthorLoginBean(String authorAccount, String authorPassword) {
+        this.authorAccount = authorAccount;
         this.authorPassword = authorPassword;
     }
 
