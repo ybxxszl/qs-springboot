@@ -2,95 +2,95 @@ package com.wjy.result;
 
 public class ResultBuilder {
 
-	// 状态码
-	private Integer code;
+    // 状态码
+    private Integer code;
 
-	// 数据
-	private Object data;
+    // 数据
+    private Object data;
 
-	// 消息
-	private String msg;
+    // 消息
+    private String msg;
 
-	public Integer getCode() {
-		return code;
-	}
+    public ResultBuilder() {
+        super();
+    }
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public ResultBuilder(Integer code, Object data, String msg) {
+        super();
+        this.code = code;
+        this.data = data;
+        this.msg = msg;
+    }
 
-	public Object getData() {
-		return data;
-	}
+    /**
+     * @param code
+     * @param data
+     * @param msg
+     * @return Return
+     * @date 2018年10月21日
+     * @author ybxxszl
+     * @description 建立自定义返回
+     */
+    public static ResultBuilder build(Integer code, Object data, String msg) {
 
-	public void setData(Object data) {
-		this.data = data;
-	}
+        return new ResultBuilder(code, data, msg);
 
-	public String getMsg() {
-		return msg;
-	}
+    }
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    /**
+     * @param data
+     * @param msg
+     * @return ReturnBuilder
+     * @date 2018年10月21日
+     * @author ybxxszl
+     * @description 成功
+     */
+    public static ResultBuilder success(Object data, String msg) {
 
-	public ResultBuilder() {
-		super();
-	}
+        return new ResultBuilder(200, data, msg);
 
-	public ResultBuilder(Integer code, Object data, String msg) {
-		super();
-		this.code = code;
-		this.data = data;
-		this.msg = msg;
-	}
+    }
 
-	@Override
-	public String toString() {
-		return "Return [code=" + code + ", data=" + data + ", msg=" + msg + "]";
-	}
+    /**
+     * @param e
+     * @return ReturnBuilder
+     * @date 2019年1月7日
+     * @author ybxxszl
+     * @description 失败
+     */
+    public static ResultBuilder error(Exception e) {
 
-	/**
-	 * @date 2018年10月21日
-	 * @author ybxxszl
-	 * @description 建立自定义返回
-	 * @param code
-	 * @param data
-	 * @param msg
-	 * @return Return
-	 */
-	public static ResultBuilder build(Integer code, Object data, String msg) {
+        return new ResultBuilder(500, null, e.getMessage());
 
-		return new ResultBuilder(code, data, msg);
+    }
 
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	/**
-	 * @date 2018年10月21日
-	 * @author ybxxszl
-	 * @description 成功
-	 * @param data
-	 * @param msg
-	 * @return ReturnBuilder
-	 */
-	public static ResultBuilder success(Object data, String msg) {
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
-		return new ResultBuilder(200, data, msg);
+    public Object getData() {
+        return data;
+    }
 
-	}
+    public void setData(Object data) {
+        this.data = data;
+    }
 
-	/**
-	 * @date 2019年1月7日
-	 * @author ybxxszl
-	 * @description 失败
-	 * @param e
-	 * @return ReturnBuilder
-	 */
-	public static ResultBuilder error(Exception e) {
+    public String getMsg() {
+        return msg;
+    }
 
-		return new ResultBuilder(500, null, e.getMessage());
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
-	}
+    @Override
+    public String toString() {
+        return "Return [code=" + code + ", data=" + data + ", msg=" + msg + "]";
+    }
 
 }

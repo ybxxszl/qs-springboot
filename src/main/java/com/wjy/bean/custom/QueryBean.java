@@ -16,6 +16,35 @@ public class QueryBean {
 
     private String searchContent; // 搜索内容
 
+    public QueryBean() {
+        super();
+    }
+
+    public QueryBean(Integer pageCurrent, Integer pageSize) {
+        super();
+        this.pageCurrent = pageCurrent;
+        this.pageSize = pageSize;
+    }
+
+    public QueryBean(Integer pageCurrent, Integer pageSize, String searchContent) {
+        super();
+        this.pageCurrent = pageCurrent;
+        this.pageSize = pageSize;
+        this.searchContent = searchContent;
+    }
+
+    public QueryBean(Integer pageCurrent, Integer pageSize, Integer pageTotal, Integer itemBegin, Integer itemEnd,
+                     Integer itemTotal, String searchContent) {
+        super();
+        this.pageCurrent = pageCurrent;
+        this.pageSize = pageSize;
+        this.pageTotal = pageTotal;
+        this.itemBegin = itemBegin;
+        this.itemEnd = itemEnd;
+        this.itemTotal = itemTotal;
+        this.searchContent = searchContent;
+    }
+
     // 默认分页的每页条数
     public Integer getPageSizeORDefault() {
         if (getPageSize() == null) {
@@ -36,10 +65,6 @@ public class QueryBean {
     // 计算起始条索引
     public Integer getCalculateItemBegin() {
         return (getPageCurrent() - 1) * getPageSize();
-    }
-
-    public QueryBean() {
-        super();
     }
 
     public Integer getPageCurrent() {
@@ -95,31 +120,6 @@ public class QueryBean {
     }
 
     public void setSearchContent(String searchContent) {
-        this.searchContent = searchContent;
-    }
-
-    public QueryBean(Integer pageCurrent, Integer pageSize) {
-        super();
-        this.pageCurrent = pageCurrent;
-        this.pageSize = pageSize;
-    }
-
-    public QueryBean(Integer pageCurrent, Integer pageSize, String searchContent) {
-        super();
-        this.pageCurrent = pageCurrent;
-        this.pageSize = pageSize;
-        this.searchContent = searchContent;
-    }
-
-    public QueryBean(Integer pageCurrent, Integer pageSize, Integer pageTotal, Integer itemBegin, Integer itemEnd,
-                     Integer itemTotal, String searchContent) {
-        super();
-        this.pageCurrent = pageCurrent;
-        this.pageSize = pageSize;
-        this.pageTotal = pageTotal;
-        this.itemBegin = itemBegin;
-        this.itemEnd = itemEnd;
-        this.itemTotal = itemTotal;
         this.searchContent = searchContent;
     }
 

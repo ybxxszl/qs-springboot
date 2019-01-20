@@ -10,6 +10,22 @@ public class UserInfoBean {
     private String avatarUrl;
     private String openId;
 
+    public UserInfoBean() {
+        super();
+    }
+
+    public UserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
+                        String openId) {
+        super();
+        this.nickName = nickName;
+        this.gender = gender;
+        this.country = country;
+        this.city = city;
+        this.province = province;
+        this.avatarUrl = avatarUrl;
+        this.openId = openId;
+    }
+
     public String getNickName() {
         return nickName;
     }
@@ -63,22 +79,6 @@ public class UserInfoBean {
     }
 
     public void setOpenId(String openId) {
-        this.openId = openId;
-    }
-
-    public UserInfoBean() {
-        super();
-    }
-
-    public UserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
-                        String openId) {
-        super();
-        this.nickName = nickName;
-        this.gender = gender;
-        this.country = country;
-        this.city = city;
-        this.province = province;
-        this.avatarUrl = avatarUrl;
         this.openId = openId;
     }
 

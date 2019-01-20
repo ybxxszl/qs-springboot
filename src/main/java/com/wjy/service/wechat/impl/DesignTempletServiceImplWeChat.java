@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-import static java.lang.System.out;
-
 /**
  * @Date 2019/1/20
  * @Author ybxxszl
