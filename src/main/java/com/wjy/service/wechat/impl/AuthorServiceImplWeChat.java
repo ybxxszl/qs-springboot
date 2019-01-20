@@ -51,9 +51,9 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
 
                 map.put("wxAuthor", mapWXAuthor);
 
-                // String token = TokenUtil.getToken(wxAuthor.getWxAuthorId());
+                String token = null;/*TokenUtil.getToken(wxAuthor.getWxAuthorId())*/
 
-                // map.put("token", token);
+                map.put("token", token);
 
             }
 
