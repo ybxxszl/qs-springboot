@@ -13,6 +13,8 @@ public class RedisConfig {
 	@Bean
 	public RedisTemplate<String, Object> getRedisTemplate(RedisConnectionFactory factory) {
 
+		System.out.println("RedisTemplate配置加载。。。");
+
 		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
 
 		redisTemplate.setConnectionFactory(factory);
