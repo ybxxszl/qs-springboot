@@ -2,6 +2,7 @@ package com.wjy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -11,16 +12,16 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.wjy.mapper.custom")
-@ComponentScan(basePackages = {"com.wjy"})
+@ComponentScan(basePackages = { "com.wjy" })
 @EnableScheduling
+@EnableCaching
 @EnableAsync
 @EnableWebMvc
 @EnableSwagger2
 public class QSApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(QSApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(QSApplication.class, args);
+	}
 
 }
-
