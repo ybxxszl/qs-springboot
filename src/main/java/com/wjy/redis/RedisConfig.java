@@ -29,6 +29,10 @@ public class RedisConfig {
 		redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
 		redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
 
+		redisTemplate.setEnableTransactionSupport(true);
+
+		redisTemplate.afterPropertiesSet();
+
 		return redisTemplate;
 
 	}
