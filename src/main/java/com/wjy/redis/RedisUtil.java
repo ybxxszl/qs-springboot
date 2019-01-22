@@ -218,28 +218,56 @@ public final class RedisUtil {
 		}
 	}
 
-	public Boolean addZSet(String key, Object member, double score) {
-
-		Boolean b = redisTemplate.opsForZSet().add(key, member, score);
-
-		return b;
-
+	/**
+	 * 添加缓存
+	 * 
+	 * @param key
+	 * @param member
+	 * @param score
+	 * @return
+	 */
+	public boolean addZSet(String key, Object member, double score) {
+		try {
+			Boolean b = redisTemplate.opsForZSet().add(key, member, score);
+			return b;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	public Double scoreZSet(String key, Object member) {
-
-		Double score = redisTemplate.opsForZSet().score(key, member);
-
-		return score;
-
+	/**
+	 * 根据key和member获取分数
+	 * 
+	 * @param key
+	 * @param member
+	 * @return
+	 */
+	public double scoreZSet(String key, Object member) {
+		try {
+			Double score = redisTemplate.opsForZSet().score(key, member);
+			return score;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
-	public Long removeZSet(String key, Object member) {
-
-		Long l = redisTemplate.opsForZSet().remove(key, member);
-
-		return l;
-
+	/**
+	 * 根据key和member移除缓存
+	 * 
+	 * @param key
+	 * @param member
+	 * @return
+	 */
+	public long removeZSet(String key, Object member) {
+		try {
+			Long l = redisTemplate.opsForZSet().remove(key, member);
+			return l;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 }
