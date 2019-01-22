@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import io.swagger.annotations.Api;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -52,10 +51,14 @@ public class SwaggerConfig implements WebMvcConfigurer {
 	 */
 	private ApiSelectorBuilder getApiSelectorBuilder(ApiSelectorBuilder apiSelectorBuilder) {
 
+		// 扫描所有
+		apiSelectorBuilder.apis(RequestHandlerSelectors.any());
 		// 扫描包路径
 		// apiSelectorBuilder.apis(RequestHandlerSelectors.basePackage("com.wjy.controller"));
 		// 扫描类注解
-		apiSelectorBuilder.apis(RequestHandlerSelectors.withClassAnnotation(Api.class));
+		// apiSelectorBuilder.apis(RequestHandlerSelectors.withClassAnnotation(Api.class));
+		// 扫描方法注解
+		// apiSelectorBuilder.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class));
 		apiSelectorBuilder.paths(PathSelectors.any());
 
 		return apiSelectorBuilder;
