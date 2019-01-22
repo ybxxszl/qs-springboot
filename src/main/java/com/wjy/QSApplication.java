@@ -12,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.wjy.mapper.custom")
-@ComponentScan(basePackages = { "com.wjy" })
+@ComponentScan(basePackages = {"com.wjy"})
 @EnableScheduling
 @EnableCaching
 @EnableAsync
@@ -20,8 +20,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableSwagger2
 public class QSApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(QSApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(QSApplication.class, args);
+    }
 
 }
