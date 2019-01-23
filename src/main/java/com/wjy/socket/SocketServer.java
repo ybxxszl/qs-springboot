@@ -1,6 +1,7 @@
 package com.wjy.socket;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -11,6 +12,8 @@ public class SocketServer {
 	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
 	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+
+	private static final String MESSAGE = "服务端 - 迟来的请求";
 
 	public static void main(String[] args) throws Exception {
 
@@ -32,8 +35,15 @@ public class SocketServer {
 
 		}
 
-		System.out.println("receive message : " + sb);
+		System.out.println("server receive message : " + sb);
 
+		OutputStream os = socket.getOutputStream();
+
+		os.write(MESSAGE.getBytes(CODING));
+
+		System.out.println("server send message : " + MESSAGE);
+
+		os.close();
 		is.close();
 		socket.close();
 		server.close();

@@ -1,5 +1,6 @@
 package com.wjy.socket;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
@@ -13,7 +14,7 @@ public class SocketClient {
 
 	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
 
-	private static final String MESSAGE = "迟来的请求";
+	private static final String MESSAGE = "客户端 - 迟来的请求";
 
 	public static void main(String args[]) throws Exception {
 
@@ -23,8 +24,25 @@ public class SocketClient {
 
 		os.write(MESSAGE.getBytes(CODING));
 
-		System.out.println("send message : " + MESSAGE);
+		System.out.println("client send message : " + MESSAGE);
 
+		socket.shutdownOutput();
+
+		int len;
+		byte[] b = new byte[1024];
+		StringBuilder sb = new StringBuilder();
+
+		InputStream is = socket.getInputStream();
+
+		while ((len = is.read(b)) != -1) {
+
+			sb.append(new String(b, 0, len, CODING));
+
+		}
+
+		System.out.println("client receive message : " + sb);
+
+		is.close();
 		os.close();
 		socket.close();
 
