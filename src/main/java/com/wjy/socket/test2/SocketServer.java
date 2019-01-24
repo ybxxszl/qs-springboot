@@ -3,8 +3,6 @@ package com.wjy.socket.test2;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import com.wjy.util.PropertiesUtil;
 
@@ -13,8 +11,6 @@ public class SocketServer {
 	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
 	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
-	
-	static ExecutorService pool = Executors.newFixedThreadPool(10);
 
 	public static void main(String[] args) throws Exception {
 
