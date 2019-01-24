@@ -1,51 +1,51 @@
 package com.wjy.socket.test2;
 
+import com.wjy.util.PropertiesUtil;
+
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.wjy.util.PropertiesUtil;
-
 public class SocketServer {
 
-	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+    private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		ServerSocket server = new ServerSocket(PORT);
+        ServerSocket server = new ServerSocket(PORT);
 
-		System.out.println("ServerSocket等待中。。。");
+        System.out.println("ServerSocket等待中。。。");
 
-		Socket socket = server.accept();
+        Socket socket = server.accept();
 
-		InputStream is = socket.getInputStream();
+        InputStream is = socket.getInputStream();
 
-		byte[] b;
+        byte[] b;
 
-		while (true) {
+        while (true) {
 
-			int first = is.read();
+            int first = is.read();
 
-			if (first == -1) {
-				break;
-			}
+            if (first == -1) {
+                break;
+            }
 
-			int second = is.read();
+            int second = is.read();
 
-			b = new byte[(first << 8) + second];
+            b = new byte[(first << 8) + second];
 
-			is.read(b);
+            is.read(b);
 
-			System.out.println("server receive message : " + new String(b, CODING));
+            System.out.println("server receive message : " + new String(b, CODING));
 
-		}
+        }
 
-		is.close();
-		socket.close();
-		server.close();
+        is.close();
+        socket.close();
+        server.close();
 
-	}
+    }
 
 }

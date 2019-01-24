@@ -1,53 +1,53 @@
 package com.wjy.socket.test1;
 
+import com.wjy.util.PropertiesUtil;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.wjy.util.PropertiesUtil;
-
 public class SocketServer {
 
-	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+    private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
 
-	private static final String MESSAGE = "服务端 - 迟来的请求";
+    private static final String MESSAGE = "服务端 - 迟来的请求";
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		ServerSocket server = new ServerSocket(PORT);
+        ServerSocket server = new ServerSocket(PORT);
 
-		System.out.println("ServerSocket等待中。。。");
+        System.out.println("ServerSocket等待中。。。");
 
-		Socket socket = server.accept();
+        Socket socket = server.accept();
 
-		int len;
-		byte[] b = new byte[1024];
-		StringBuilder sb = new StringBuilder();
+        int len;
+        byte[] b = new byte[1024];
+        StringBuilder sb = new StringBuilder();
 
-		InputStream is = socket.getInputStream();
+        InputStream is = socket.getInputStream();
 
-		while ((len = is.read(b)) != -1) {
+        while ((len = is.read(b)) != -1) {
 
-			sb.append(new String(b, 0, len, CODING));
+            sb.append(new String(b, 0, len, CODING));
 
-		}
+        }
 
-		System.out.println("server receive message : " + sb);
+        System.out.println("server receive message : " + sb);
 
-		OutputStream os = socket.getOutputStream();
+        OutputStream os = socket.getOutputStream();
 
-		os.write(MESSAGE.getBytes(CODING));
+        os.write(MESSAGE.getBytes(CODING));
 
-		System.out.println("server send message : " + MESSAGE);
+        System.out.println("server send message : " + MESSAGE);
 
-		os.close();
-		is.close();
-		socket.close();
-		server.close();
+        os.close();
+        is.close();
+        socket.close();
+        server.close();
 
-	}
+    }
 
 }

@@ -12,98 +12,98 @@ import static java.lang.System.out;
 
 public class WebSocketServer {
 
-	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+    private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		try {
+        try {
 
-			run();
+            run();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	private static void run() throws Exception {
+    private static void run() throws Exception {
 
-		ServerSocket server = null;
-		Socket socket = null;
-		InputStream is = null;
+        ServerSocket server = null;
+        Socket socket = null;
+        InputStream is = null;
 
-		out.println("聊天室等待中");
+        out.println("聊天室等待中");
 
-		while (true) {
+        while (true) {
 
-			try {
+            try {
 
-				server = new ServerSocket(PORT);
+                server = new ServerSocket(PORT);
 
-				socket = server.accept();
+                socket = server.accept();
 
-				is = socket.getInputStream();
+                is = socket.getInputStream();
 
-				byte[] b;
+                byte[] b;
 
-				while (true) {
+                while (true) {
 
-					int first = is.read();
+                    int first = is.read();
 
-					if (first == -1) {
-						break;
-					}
+                    if (first == -1) {
+                        break;
+                    }
 
-					int second = is.read();
+                    int second = is.read();
 
-					b = new byte[(first << 8) + second];
+                    b = new byte[(first << 8) + second];
 
-					is.read(b);
+                    is.read(b);
 
-					String msg = new String(b, CODING);
+                    String msg = new String(b, CODING);
 
-					get(msg);
+                    get(msg);
 
-				}
+                }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
 
-				try {
-					is.close();
-					socket.close();
-					server.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+                try {
+                    is.close();
+                    socket.close();
+                    server.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	private static void get(String msg) {
+    private static void get(String msg) {
 
-		MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
+        MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
 
-		if (bean.getType() == 1) {
+        if (bean.getType() == 1) {
 
-			out.println(bean.getTime() + " " + bean.getName() + "进入聊天室");
+            out.println(bean.getTime() + " " + bean.getName() + "进入聊天室");
 
-		} else if (bean.getType() == 2) {
+        } else if (bean.getType() == 2) {
 
-			out.println(bean.getTime() + " " + bean.getName() + "退出聊天室");
+            out.println(bean.getTime() + " " + bean.getName() + "退出聊天室");
 
-		} else if (bean.getType() == 3) {
+        } else if (bean.getType() == 3) {
 
-			out.println(bean.getTime() + " " + bean.getName() + "说：" + bean.getContent());
+            out.println(bean.getTime() + " " + bean.getName() + "说：" + bean.getContent());
 
-		}
+        }
 
-	}
+    }
 
 }

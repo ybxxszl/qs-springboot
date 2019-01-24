@@ -1,94 +1,92 @@
 package com.wjy.filter;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.stereotype.Component;
-
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
 import com.wjy.util.TokenUtil;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * @date 2019年1月24日
  * @author ybxxszl
+ * @date 2019年1月24日
  * @description 请求过滤
  */
 @Component
 public class RequestFilter {
 
-	private static Set<String> ignore = new HashSet<String>();
+    private static Set<String> ignore = new HashSet<String>();
 
-	// 忽略验证
-	static {
+    // 忽略验证
+    static {
 
-		ignore.add("/wechat/author/login");
-		ignore.add("/wechat/author/send");
-		ignore.add("/wechat/author/register");
+        ignore.add("/wechat/author/login");
+        ignore.add("/wechat/author/send");
+        ignore.add("/wechat/author/register");
 
-	}
+    }
 
-	// 添加忽略验证
-	public static void add(String p) {
+    // 添加忽略验证
+    public static void add(String p) {
 
-		ignore.add(p);
+        ignore.add(p);
 
-	}
+    }
 
-	public static boolean filter(HttpServletRequest request) {
+    public static boolean filter(HttpServletRequest request) {
 
-		String path = request.getRequestURI();
+        String path = request.getRequestURI();
 
-		String authorId = request.getHeader("H-AuthorId");
+        String authorId = request.getHeader("H-AuthorId");
 
-		String token = request.getHeader("H-Token");
+        String token = request.getHeader("H-Token");
 
-		Boolean verify = true;
+        Boolean verify = true;
 
-		for (String str : ignore) {
+        for (String str : ignore) {
 
-			if (path.contains(str)) {
+            if (path.contains(str)) {
 
-				verify = false;
+                verify = false;
 
-			}
+            }
 
-		}
+        }
 
-		if (verify) {
+        if (verify) {
 
-			if (token == null || !TokenUtil.verifyToken(token)) {
+            if (token == null || !TokenUtil.verifyToken(token)) {
 
-				return false;
+                return false;
 
-			} else {
+            } else {
 
-				ThreadLocalVar threadLocalVar = new ThreadLocalVar();
+                ThreadLocalVar threadLocalVar = new ThreadLocalVar();
 
-				threadLocalVar.setToken(token);
+                threadLocalVar.setToken(token);
 
-				if (authorId != null) {
+                if (authorId != null) {
 
-					threadLocalVar.setAuthor_id(authorId);
+                    threadLocalVar.setAuthor_id(authorId);
 
-				}
+                }
 
-				ThreadLocalEnv.setENV(threadLocalVar);
+                ThreadLocalEnv.setENV(threadLocalVar);
 
-			}
+            }
 
-		} else {
+        } else {
 
-			ThreadLocalVar threadLocalVar = new ThreadLocalVar("unAuthorId", "unToken");
+            ThreadLocalVar threadLocalVar = new ThreadLocalVar("unAuthorId", "unToken");
 
-			ThreadLocalEnv.setENV(threadLocalVar);
+            ThreadLocalEnv.setENV(threadLocalVar);
 
-		}
+        }
 
-		return true;
+        return true;
 
-	}
+    }
 
 }

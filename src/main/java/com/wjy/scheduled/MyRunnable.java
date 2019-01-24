@@ -2,18 +2,18 @@ package com.wjy.scheduled;
 
 public class MyRunnable implements Runnable {
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
 
-		try {
+        try {
 
-			System.out.println(Thread.currentThread().getName() + " running MyRunnable");
+            System.out.println(Thread.currentThread().getName() + " running MyRunnable");
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

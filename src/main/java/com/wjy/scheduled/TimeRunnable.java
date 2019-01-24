@@ -5,18 +5,18 @@ import java.util.Date;
 
 public class TimeRunnable implements Runnable {
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
 
-		try {
+        try {
 
-			System.out.println(new SimpleDateFormat("mm:ss").format(new Date()));
+            System.out.println(new SimpleDateFormat("mm:ss").format(new Date()));
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

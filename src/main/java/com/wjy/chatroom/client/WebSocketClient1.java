@@ -14,174 +14,174 @@ import static java.lang.System.out;
 
 public class WebSocketClient1 {
 
-	private static final String HOST = PropertiesUtil.getStringValue("socket.server.host");
+    private static final String HOST = PropertiesUtil.getStringValue("socket.server.host");
 
-	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-	private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+    private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
 
-	private static final String NAME = "玩家1";
+    private static final String NAME = "玩家1";
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		try {
+        try {
 
-			boolean flag = enter();
+            boolean flag = enter();
 
-			if (flag) {
+            if (flag) {
 
-				run();
+                run();
 
-			}
+            }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	private static boolean enter() throws Exception {
+    private static boolean enter() throws Exception {
 
-		Socket socket = null;
-		OutputStream os = null;
+        Socket socket = null;
+        OutputStream os = null;
 
-		try {
+        try {
 
-			socket = new Socket(HOST, PORT);
+            socket = new Socket(HOST, PORT);
 
-			os = socket.getOutputStream();
+            os = socket.getOutputStream();
 
-			String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+            String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 
-			MsgBean bean = new MsgBean(NAME, time, 1);
+            MsgBean bean = new MsgBean(NAME, time, 1);
 
-			String msg = JSONObject.toJSONString(bean);
+            String msg = JSONObject.toJSONString(bean);
 
-			byte[] b = msg.getBytes(CODING);
+            byte[] b = msg.getBytes(CODING);
 
-			os.write(b.length >> 8);
-			os.write(b.length);
-			os.write(b);
+            os.write(b.length >> 8);
+            os.write(b.length);
+            os.write(b);
 
-			os.flush();
+            os.flush();
 
-		} catch (Exception e) {
-			throw new Exception("进入聊天室失败", e);
-		} finally {
-			os.close();
-			socket.close();
-		}
+        } catch (Exception e) {
+            throw new Exception("进入聊天室失败", e);
+        } finally {
+            os.close();
+            socket.close();
+        }
 
-		out.println(NAME + " 进入聊天室");
+        out.println(NAME + " 进入聊天室");
 
-		return true;
+        return true;
 
-	}
+    }
 
-	private static void exit() throws Exception {
+    private static void exit() throws Exception {
 
-		Socket socket = null;
-		OutputStream os = null;
+        Socket socket = null;
+        OutputStream os = null;
 
-		try {
+        try {
 
-			socket = new Socket(HOST, PORT);
+            socket = new Socket(HOST, PORT);
 
-			os = socket.getOutputStream();
+            os = socket.getOutputStream();
 
-			String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+            String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 
-			MsgBean bean = new MsgBean(NAME, time, 2);
+            MsgBean bean = new MsgBean(NAME, time, 2);
 
-			String msg = JSONObject.toJSONString(bean);
+            String msg = JSONObject.toJSONString(bean);
 
-			byte[] b = msg.getBytes(CODING);
+            byte[] b = msg.getBytes(CODING);
 
-			os.write(b.length >> 8);
-			os.write(b.length);
-			os.write(b);
+            os.write(b.length >> 8);
+            os.write(b.length);
+            os.write(b);
 
-			os.flush();
+            os.flush();
 
-		} catch (Exception e) {
-			throw new Exception("退出聊天室失败", e);
-		} finally {
-			os.close();
-			socket.close();
-		}
+        } catch (Exception e) {
+            throw new Exception("退出聊天室失败", e);
+        } finally {
+            os.close();
+            socket.close();
+        }
 
-		out.println(NAME + " 退出聊天室");
+        out.println(NAME + " 退出聊天室");
 
-	}
+    }
 
-	private static void run() throws Exception {
+    private static void run() throws Exception {
 
-		boolean flag = false;
+        boolean flag = false;
 
-		Socket socket = null;
-		OutputStream os = null;
+        Socket socket = null;
+        OutputStream os = null;
 
-		while (true) {
+        while (true) {
 
-			try {
+            try {
 
-				socket = new Socket(HOST, PORT);
+                socket = new Socket(HOST, PORT);
 
-				os = socket.getOutputStream();
+                os = socket.getOutputStream();
 
-				byte[] b;
+                byte[] b;
 
-				while (true) {
+                while (true) {
 
-					Scanner scanner = new Scanner(System.in);
+                    Scanner scanner = new Scanner(System.in);
 
-					String content = scanner.nextLine();
+                    String content = scanner.nextLine();
 
-					if ("exit".equals(content)) {
+                    if ("exit".equals(content)) {
 
-						exit();
+                        exit();
 
-						flag = true;
+                        flag = true;
 
-						continue;
+                        continue;
 
-					}
+                    }
 
-					String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+                    String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 
-					MsgBean bean = new MsgBean(NAME, content, time, 3);
+                    MsgBean bean = new MsgBean(NAME, content, time, 3);
 
-					String msg = JSONObject.toJSONString(bean);
+                    String msg = JSONObject.toJSONString(bean);
 
-					b = msg.getBytes(CODING);
+                    b = msg.getBytes(CODING);
 
-					os.write(b.length >> 8);
-					os.write(b.length);
-					os.write(b);
+                    os.write(b.length >> 8);
+                    os.write(b.length);
+                    os.write(b);
 
-					os.flush();
+                    os.flush();
 
-				}
+                }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
 
-				try {
-					os.close();
-					socket.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+                try {
+                    os.close();
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-			}
+            }
 
-			if (flag) {
-				break;
-			}
+            if (flag) {
+                break;
+            }
 
-		}
+        }
 
-	}
+    }
 
 }

@@ -2,65 +2,65 @@ package com.wjy.chatroom.bean;
 
 public class MsgBean {
 
-	private String name;
-	private String content;
-	private String time;
-	private Integer type;// 1 进入 2 退出 3 聊天内容
+    private String name;
+    private String content;
+    private String time;
+    private Integer type;// 1 进入 2 退出 3 聊天内容
 
-	public String getName() {
-		return name;
-	}
+    public MsgBean() {
+        super();
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public MsgBean(String name, String time, Integer type) {
+        super();
+        this.name = name;
+        this.time = time;
+        this.type = type;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public MsgBean(String name, String content, String time, Integer type) {
+        super();
+        this.name = name;
+        this.content = content;
+        this.time = time;
+        this.type = type;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getTime() {
-		return time;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Integer getType() {
-		return type;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public MsgBean() {
-		super();
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-	public MsgBean(String name, String time, Integer type) {
-		super();
-		this.name = name;
-		this.time = time;
-		this.type = type;
-	}
+    public Integer getType() {
+        return type;
+    }
 
-	public MsgBean(String name, String content, String time, Integer type) {
-		super();
-		this.name = name;
-		this.content = content;
-		this.time = time;
-		this.type = type;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	@Override
-	public String toString() {
-		return "MsgBean [name=" + name + ", content=" + content + ", time=" + time + ", type=" + type + "]";
-	}
+    @Override
+    public String toString() {
+        return "MsgBean [name=" + name + ", content=" + content + ", time=" + time + ", type=" + type + "]";
+    }
 
 }

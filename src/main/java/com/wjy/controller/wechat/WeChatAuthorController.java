@@ -1,7 +1,15 @@
 package com.wjy.controller.wechat;
 
-import java.util.Map;
-
+import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
+import com.alibaba.fastjson.JSONObject;
+import com.wjy.bean.offical.UserInfoBean;
+import com.wjy.bean.offical.WXAuthorRegisterBean;
+import com.wjy.result.ResultBuilder;
+import com.wjy.send.mail.VerifyCode;
+import com.wjy.service.wechat.AuthorServiceWeChat;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,17 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
-import com.wjy.bean.offical.UserInfoBean;
-import com.wjy.bean.offical.WXAuthorRegisterBean;
-import com.wjy.result.ResultBuilder;
-import com.wjy.send.mail.VerifyCode;
-import com.wjy.service.wechat.AuthorServiceWeChat;
-
-import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import java.util.Map;
 
 /**
  * @author ybxxszl

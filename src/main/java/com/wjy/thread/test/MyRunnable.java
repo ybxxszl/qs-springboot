@@ -4,22 +4,22 @@ import java.util.concurrent.TimeUnit;
 
 public class MyRunnable implements Runnable {
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
 
-		try {
+        try {
 
-			long l = (long) (Math.random() * 10 + 1);
+            long l = (long) (Math.random() * 10 + 1);
 
-			TimeUnit.SECONDS.sleep(l);
+            TimeUnit.SECONDS.sleep(l);
 
-			System.out.println(Thread.currentThread().getName() + " running " + l);
+            System.out.println(Thread.currentThread().getName() + " running " + l);
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }
