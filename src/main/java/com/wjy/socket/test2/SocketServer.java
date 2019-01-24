@@ -40,9 +40,6 @@ public class SocketServer {
 
 			System.out.println("server receive message : " + new String(b, CODING));
 
-			System.out.println(first);
-			System.out.println(second);
-
 		}
 
 		is.close();
