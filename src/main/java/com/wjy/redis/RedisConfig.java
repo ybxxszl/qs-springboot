@@ -10,31 +10,30 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    @Bean
-    public RedisTemplate<String, Object> getRedisTemplate(RedisConnectionFactory factory) {
+	@Bean
+	public RedisTemplate<String, Object> getRedisTemplate(RedisConnectionFactory factory) {
 
-        System.out.println("RedisTemplate配置加载。。。");
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
 
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+		redisTemplate.setConnectionFactory(factory);
 
-        redisTemplate.setConnectionFactory(factory);
+		StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+		redisTemplate.setKeySerializer(stringRedisSerializer);
+		redisTemplate.setHashKeySerializer(stringRedisSerializer);
 
-        redisTemplate.setKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+		Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(
+				Object.class);
 
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+		redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+		redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
 
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+		redisTemplate.setEnableTransactionSupport(true);
 
-        redisTemplate.setEnableTransactionSupport(true);
+		redisTemplate.afterPropertiesSet();
 
-        redisTemplate.afterPropertiesSet();
+		return redisTemplate;
 
-        return redisTemplate;
-
-    }
+	}
 
 }
