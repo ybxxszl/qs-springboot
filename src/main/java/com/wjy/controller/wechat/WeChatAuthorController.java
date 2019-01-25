@@ -4,7 +4,7 @@ import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.bean.offical.UserInfoBean;
 import com.wjy.bean.offical.WXAuthorRegisterBean;
-import com.wjy.result.ResultBuilder;
+import com.wjy.response.ResultBuilder;
 import com.wjy.send.mail.VerifyCode;
 import com.wjy.service.wechat.AuthorServiceWeChat;
 import io.swagger.annotations.Api;

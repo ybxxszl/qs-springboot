@@ -2,7 +2,7 @@ package com.wjy.controller.website;
 
 import com.wjy.bean.offical.AuthorLoginBean;
 import com.wjy.pojo.Author;
-import com.wjy.result.ResultBuilder;
+import com.wjy.response.ResultBuilder;
 import com.wjy.service.website.AuthorServiceWebSite;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

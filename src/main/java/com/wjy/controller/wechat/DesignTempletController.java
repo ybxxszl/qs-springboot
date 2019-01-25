@@ -1,7 +1,7 @@
 package com.wjy.controller.wechat;
 
 import com.wjy.pojo.DesignTemplet;
-import com.wjy.result.ResultBuilder;
+import com.wjy.response.ResultBuilder;
 import com.wjy.service.wechat.DesignTempletServiceWeChat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

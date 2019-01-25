@@ -1,4 +1,4 @@
-package com.wjy.result;
+package com.wjy.response;
 
 public class ResultBuilder {
 

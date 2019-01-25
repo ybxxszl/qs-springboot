@@ -1,4 +1,4 @@
-package com.wjy.filter;
+package com.wjy.request.filter;
 
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;

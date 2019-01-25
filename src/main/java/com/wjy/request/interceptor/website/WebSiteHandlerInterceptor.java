@@ -1,4 +1,4 @@
-package com.wjy.interceptor.website;
+package com.wjy.request.interceptor.website;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
