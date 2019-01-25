@@ -1,109 +1,65 @@
 package com.wjy.chatroom.server;
 
-import com.alibaba.fastjson.JSONObject;
-import com.wjy.chatroom.bean.MsgBean;
-import com.wjy.util.PropertiesUtil;
+import static java.lang.System.out;
 
-import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-import static java.lang.System.out;
+import com.wjy.chatroom.thread.ThreadFactoryCreate;
+import com.wjy.util.PropertiesUtil;
 
 public class WebSocketServer {
 
-    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-    private static final String CODING = PropertiesUtil.getStringValue("socket.coding");
+	static ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 5, 1, TimeUnit.SECONDS,
+			new LinkedBlockingQueue<Runnable>(), new ThreadFactoryCreate());
 
-    public static void main(String[] args) {
+	static ServerSocket server = null;
 
-        try {
+	static {
+		try {
+			server = new ServerSocket(PORT);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-            run();
+	private static void run() {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		executor.allowCoreThreadTimeOut(true);
 
-    }
+		while (true) {
 
-    private static void run() throws Exception {
+			try {
 
-        ServerSocket server = null;
-        Socket socket = null;
-        InputStream is = null;
+				Socket socket = server.accept();
 
-        out.println("聊天室等待中");
+				if (socket != null) {
 
-        while (true) {
+					WebSocketServerRun run = new WebSocketServerRun(socket);
 
-            try {
+					executor.execute(run);
 
-                server = new ServerSocket(PORT);
+				}
 
-                socket = server.accept();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-                is = socket.getInputStream();
+		}
 
-                byte[] b;
+	}
 
-                while (true) {
+	public static void main(String[] args) {
 
-                    int first = is.read();
+		out.println("聊天室等待中");
 
-                    if (first == -1) {
-                        break;
-                    }
+		run();
 
-                    int second = is.read();
-
-                    b = new byte[(first << 8) + second];
-
-                    is.read(b);
-
-                    String msg = new String(b, CODING);
-
-                    get(msg);
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-
-                try {
-                    is.close();
-                    socket.close();
-                    server.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-
-    }
-
-    private static void get(String msg) {
-
-        MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
-
-        if (bean.getType() == 1) {
-
-            out.println(bean.getTime() + " " + bean.getName() + "进入聊天室");
-
-        } else if (bean.getType() == 2) {
-
-            out.println(bean.getTime() + " " + bean.getName() + "退出聊天室");
-
-        } else if (bean.getType() == 3) {
-
-            out.println(bean.getTime() + " " + bean.getName() + "说：" + bean.getContent());
-
-        }
-
-    }
+	}
 
 }
