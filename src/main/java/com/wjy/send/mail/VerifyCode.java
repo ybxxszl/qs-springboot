@@ -1,12 +1,17 @@
 package com.wjy.send.mail;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.jedis.RedisUtil;
+import com.wjy.redis.RedisUtil;
 import com.wjy.util.HttpClientUtil;
 import com.wjy.util.PropertiesUtil;
 import com.wjy.util.RandomCodeUtil;
 
 public class VerifyCode {
+	
+	@Autowired
+	private RedisUtil redisUtil;
 
     private static String mqUrl;
     private static String mqVerifyCodeMills;
@@ -22,7 +27,7 @@ public class VerifyCode {
 
         String verifyCode = RandomCodeUtil.getVerifyCode();
 
-        RedisUtil.set("verifycode:" + authorEmail, verifyCode, Integer.parseInt(mqVerifyCodeMills));
+        redisUtil.setValue("verifycode:" + authorEmail, verifyCode, Integer.parseInt(mqVerifyCodeMills));
 
         JSONObject mqInfo = new JSONObject();
         JSONObject mailInfo = new JSONObject();
