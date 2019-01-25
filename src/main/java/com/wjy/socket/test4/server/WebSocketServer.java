@@ -2,7 +2,6 @@ package com.wjy.socket.test4.server;
 
 import com.wjy.socket.test4.thread.ThreadFactoryCreate;
 import com.wjy.util.PropertiesUtil;
-import org.junit.Test;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -60,17 +59,6 @@ public class WebSocketServer {
         out.println("聊天室等待中");
 
         run();
-
-    }
-
-    @Test
-    public void stop() {
-
-        try {
-            server.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
