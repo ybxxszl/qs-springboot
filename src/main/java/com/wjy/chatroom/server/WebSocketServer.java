@@ -8,6 +8,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Test;
+
 import com.wjy.chatroom.thread.ThreadFactoryCreate;
 import com.wjy.util.PropertiesUtil;
 
@@ -50,6 +52,17 @@ public class WebSocketServer {
 				e.printStackTrace();
 			}
 
+		}
+
+	}
+
+	@Test
+	public void stop() {
+
+		try {
+			server.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
