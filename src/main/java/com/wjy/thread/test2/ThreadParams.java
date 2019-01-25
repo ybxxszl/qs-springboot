@@ -1,4 +1,4 @@
-package com.wjy.thread.test;
+package com.wjy.thread.test2;
 
 public class ThreadParams {
 

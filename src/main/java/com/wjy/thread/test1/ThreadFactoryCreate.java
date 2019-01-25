@@ -1,4 +1,4 @@
-package com.wjy.chatroom.thread;
+package com.wjy.thread.test1;
 
 import java.util.concurrent.ThreadFactory;
 

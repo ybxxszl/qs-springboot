@@ -1,4 +1,4 @@
-package com.wjy.chatroom.server;
+package com.wjy.socket.test4.server;
 
 import static java.lang.System.out;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import com.wjy.chatroom.thread.ThreadFactoryCreate;
+import com.wjy.socket.test4.thread.ThreadFactoryCreate;
 import com.wjy.util.PropertiesUtil;
 
 public class WebSocketServer {

@@ -1,4 +1,4 @@
-package com.wjy.scheduled;
+package com.wjy.thread.test2;
 
 import java.util.concurrent.ThreadFactory;
 

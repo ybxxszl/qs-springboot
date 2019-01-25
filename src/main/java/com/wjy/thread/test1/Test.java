@@ -1,4 +1,4 @@
-package com.wjy.thread.test;
+package com.wjy.thread.test1;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

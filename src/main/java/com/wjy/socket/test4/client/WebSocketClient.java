@@ -1,7 +1,7 @@
-package com.wjy.chatroom.client;
+package com.wjy.socket.test4.client;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.chatroom.bean.MsgBean;
+import com.wjy.socket.test4.bean.MsgBean;
 import com.wjy.util.PropertiesUtil;
 import com.wjy.util.RandomCodeUtil;
 

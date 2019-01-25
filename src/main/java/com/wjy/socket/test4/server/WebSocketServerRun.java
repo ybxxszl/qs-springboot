@@ -1,4 +1,4 @@
-package com.wjy.chatroom.server;
+package com.wjy.socket.test4.server;
 
 import static java.lang.System.out;
 
@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.chatroom.bean.MsgBean;
+import com.wjy.socket.test4.bean.MsgBean;
 import com.wjy.util.PropertiesUtil;
 
 public class WebSocketServerRun implements Runnable {

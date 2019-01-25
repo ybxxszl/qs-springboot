@@ -1,4 +1,4 @@
-package com.wjy.scheduled;
+package com.wjy.thread.test1;
 
 public class ThreadParams {
 
