@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.custom.AuthorMapperCustom">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.Author">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="author_id" property="authorId" jdbcType="VARCHAR"/>
-        <result column="author_account" property="authorAccount" jdbcType="VARCHAR"/>
-        <result column="author_password" property="authorPassword" jdbcType="VARCHAR"/>
-        <result column="author_name" property="authorName" jdbcType="VARCHAR"/>
-        <result column="author_sex" property="authorSex" jdbcType="VARCHAR"/>
-        <result column="author_birthday" property="authorBirthday" jdbcType="DATE"/>
-        <result column="author_phone" property="authorPhone" jdbcType="VARCHAR"/>
-        <result column="author_email" property="authorEmail" jdbcType="VARCHAR"/>
-        <result column="author_photo" property="authorPhoto" jdbcType="VARCHAR"/>
-        <result column="author_state" property="authorState" jdbcType="INTEGER"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.Author">
+		<!-- WARNING - @mbg.generated -->
+		<id column="author_id" property="authorId" jdbcType="VARCHAR" />
+		<result column="author_account" property="authorAccount"
+			jdbcType="VARCHAR" />
+		<result column="author_password" property="authorPassword"
+			jdbcType="VARCHAR" />
+		<result column="author_name" property="authorName" jdbcType="VARCHAR" />
+		<result column="author_sex" property="authorSex" jdbcType="VARCHAR" />
+		<result column="author_birthday" property="authorBirthday"
+			jdbcType="DATE" />
+		<result column="author_phone" property="authorPhone" jdbcType="VARCHAR" />
+		<result column="author_email" property="authorEmail" jdbcType="VARCHAR" />
+		<result column="author_photo" property="authorPhoto" jdbcType="VARCHAR" />
+		<result column="author_state" property="authorState" jdbcType="INTEGER" />
+	</resultMap>
 
-    <select id="selectAuthorByAuthorLoginBean" parameterType="com.wjy.bean.offical.AuthorLoginBean"
-            resultMap="BaseResultMap">
-        SELECT
-        author_id, author_account, author_password, author_name, author_sex, author_birthday, author_phone,
-        author_email, author_photo, author_state
-        FROM
-        author
-        WHERE
-        author_account = #{authorAccount} AND author_password = #{authorPassword}
-    </select>
+	<select id="selectAuthorByAuthorLoginBean" parameterType="com.wjy.bean.offical.AuthorLoginBean"
+		resultMap="BaseResultMap">
+		SELECT
+		author_id, author_account, author_password,
+		author_name, author_sex,
+		author_birthday, author_phone,
+		author_email,
+		author_photo, author_state
+		FROM
+		author
+		WHERE
+		author_account =
+		#{authorAccount} AND author_password = #{authorPassword}
+	</select>
 
-    <select id="countAuthorByAuthorAccount" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT
-        count(1)
-        FROM
-        author
-        WHERE
-        author_account = #{authorAccount}
-    </select>
+	<select id="countAuthorByAuthorAccount" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM
+		author
+		WHERE
+		author_account =
+		#{authorAccount}
+	</select>
 
-    <insert id="insertAuthorByAuthor" parameterType="com.wjy.pojo.Author">
-        INSERT INTO
-        author(author_id, author_account, author_password, author_name, author_sex, author_birthday, author_phone,
-        author_email, author_photo, author_state)
-        VALUES
-        (#{authorId}, #{authorAccount}, #{authorPassword}, #{authorName}, #{authorSex}, #{authorBirthday},
-        #{authorPhone},
-        #{authorEmail}, #{authorPhoto}, #{authorState})
-    </insert>
+	<insert id="insertAuthorByAuthor" parameterType="com.wjy.pojo.Author">
+		INSERT INTO
+		author(author_id, author_account, author_password, author_name,
+		author_sex,
+		author_birthday, author_phone,
+		author_email, author_photo,
+		author_state)
+		VALUES
+		(#{authorId}, #{authorAccount}, #{authorPassword},
+		#{authorName}, #{authorSex},
+		#{authorBirthday},
+		#{authorPhone},
+		#{authorEmail}, #{authorPhoto}, #{authorState})
+	</insert>
 
 </mapper>

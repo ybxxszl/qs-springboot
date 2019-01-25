@@ -1,47 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.custom.WXAuthorMapperCustom">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.WXAuthor">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="wx_author_id" property="wxAuthorId" jdbcType="VARCHAR"/>
-        <result column="wx_author_email" property="wxAuthorEmail" jdbcType="VARCHAR"/>
-        <result column="wx_author_nick_name" property="wxAuthorNickName" jdbcType="VARCHAR"/>
-        <result column="wx_author_sex" property="wxAuthorSex" jdbcType="VARCHAR"/>
-        <result column="wx_author_country" property="wxAuthorCountry" jdbcType="VARCHAR"/>
-        <result column="wx_author_city" property="wxAuthorCity" jdbcType="VARCHAR"/>
-        <result column="wx_author_province" property="wxAuthorProvince" jdbcType="VARCHAR"/>
-        <result column="wx_author_avatar_url" property="wxAuthorAvatarUrl" jdbcType="VARCHAR"/>
-        <result column="wx_author_open_id" property="wxAuthorOpenId" jdbcType="VARCHAR"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.WXAuthor">
+		<!-- WARNING - @mbg.generated -->
+		<id column="wx_author_id" property="wxAuthorId" jdbcType="VARCHAR" />
+		<result column="wx_author_email" property="wxAuthorEmail"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_nick_name" property="wxAuthorNickName"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_sex" property="wxAuthorSex" jdbcType="VARCHAR" />
+		<result column="wx_author_country" property="wxAuthorCountry"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_city" property="wxAuthorCity"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_province" property="wxAuthorProvince"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_avatar_url" property="wxAuthorAvatarUrl"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_open_id" property="wxAuthorOpenId"
+			jdbcType="VARCHAR" />
+	</resultMap>
 
-    <select id="selectWXAuthorByWXAuthorOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
-        SELECT
-        wx_author_id, wx_author_email, wx_author_nick_name, wx_author_sex, wx_author_country,
-        wx_author_city, wx_author_province, wx_author_avatar_url, wx_author_open_id
-        FROM
-        wx_author
-        WHERE
-        wx_author_open_id = #{wxAuthorOpenId}
-    </select>
+	<select id="selectWXAuthorByWXAuthorOpenId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		wx_author_id, wx_author_email, wx_author_nick_name,
+		wx_author_sex,
+		wx_author_country,
+		wx_author_city, wx_author_province,
+		wx_author_avatar_url, wx_author_open_id
+		FROM
+		wx_author
+		WHERE
+		wx_author_open_id = #{wxAuthorOpenId}
+	</select>
 
-    <select id="countWXAuthorByWXAuthorEmail" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT
-        count(1)
-        FROM
-        wx_author
-        WHERE
-        wx_author_email = #{wxAuthorEmail}
-    </select>
+	<select id="countWXAuthorByWXAuthorEmail" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM
+		wx_author
+		WHERE
+		wx_author_email =
+		#{wxAuthorEmail}
+	</select>
 
-    <insert id="insertWXAuthorByWXAuthor" parameterType="com.wjy.pojo.WXAuthor">
-        INSERT INTO
-        wx_author(wx_author_id, wx_author_email, wx_author_nick_name, wx_author_sex, wx_author_country,
-        wx_author_province, wx_author_city, wx_author_avatar_url, wx_author_open_id)
-        VALUES
-        (#{wxAuthorId}, #{wxAuthorEmail}, #{wxAuthorNickName}, #{wxAuthorSex}, #{wxAuthorCountry},
-        #{wxAuthorCity}, #{wxAuthorProvince}, #{wxAuthorAvatarUrl}, #{wxAuthorOpenId})
-    </insert>
+	<insert id="insertWXAuthorByWXAuthor" parameterType="com.wjy.pojo.WXAuthor">
+		INSERT INTO
+		wx_author(wx_author_id, wx_author_email, wx_author_nick_name,
+		wx_author_sex,
+		wx_author_country,
+		wx_author_province, wx_author_city,
+		wx_author_avatar_url, wx_author_open_id)
+		VALUES
+		(#{wxAuthorId},
+		#{wxAuthorEmail}, #{wxAuthorNickName}, #{wxAuthorSex},
+		#{wxAuthorCountry},
+		#{wxAuthorCity}, #{wxAuthorProvince},
+		#{wxAuthorAvatarUrl}, #{wxAuthorOpenId})
+	</insert>
 
 </mapper>

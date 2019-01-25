@@ -4,47 +4,45 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <context id="MysqlContext" targetRuntime="MyBatis3Simple"
-             defaultModelType="flat">
+	<context id="MysqlContext" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
 
-        <property name="beginningDelimiter" value="`"/>
-        <property name="endingDelimiter" value="`"/>
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
 
-        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.wjy.GeneralMapper"/>
-        </plugin>
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="com.wjy.GeneralMapper" />
+		</plugin>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/qs" userId="root"
-                        password="root"></jdbcConnection>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/qs" userId="root"
+			password="root"></jdbcConnection>
 
-        <!-- 对于生成的pojo所在包 -->
-        <javaModelGenerator targetPackage="com.wjy.pojo"
-                            targetProject="src/main/java"/>
+		<!-- 对于生成的pojo所在包 -->
+		<javaModelGenerator targetPackage="com.wjy.pojo"
+			targetProject="src/main/java" />
 
-        <!-- 对于生成的mapper所在目录 -->
-        <sqlMapGenerator targetPackage="mapper"
-                         targetProject="src/main/resources"/>
+		<!-- 对于生成的mapper所在目录 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
 
-        <!-- 配置mapper对应的java映射 -->
-        <javaClientGenerator
-                targetPackage="com.wjy.mapper" targetProject="src/main/java"
-                type="XMLMAPPER"/>
+		<!-- 配置mapper对应的java映射 -->
+		<javaClientGenerator targetPackage="com.wjy.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" />
 
-        <table tableName="wx_author"></table>
-        <table tableName="author"></table>
-        <table tableName="design_templet"></table>
-        <table tableName="design_templet_index"></table>
-        <table tableName="design_single"></table>
-        <table tableName="design_single_option"></table>
-        <table tableName="design_checkbox"></table>
-        <table tableName="design_checkbox_option"></table>
-        <table tableName="design_text"></table>
-        <table tableName="single_answer_count"></table>
-        <table tableName="checkbox_answer_count"></table>
-        <table tableName="text_answer"></table>
-        <table tableName="queue_task"></table>
-        <table tableName="delay_task"></table>
+		<table tableName="wx_author"></table>
+		<table tableName="author"></table>
+		<table tableName="design_templet"></table>
+		<table tableName="design_templet_index"></table>
+		<table tableName="design_single"></table>
+		<table tableName="design_single_option"></table>
+		<table tableName="design_checkbox"></table>
+		<table tableName="design_checkbox_option"></table>
+		<table tableName="design_text"></table>
+		<table tableName="single_answer_count"></table>
+		<table tableName="checkbox_answer_count"></table>
+		<table tableName="text_answer"></table>
+		<table tableName="queue_task"></table>
+		<table tableName="delay_task"></table>
 
-    </context>
+	</context>
 </generatorConfiguration>

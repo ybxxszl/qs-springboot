@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.AuthorMapper">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.Author">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="author_id" property="authorId" jdbcType="VARCHAR"/>
-        <result column="author_account" property="authorAccount" jdbcType="VARCHAR"/>
-        <result column="author_password" property="authorPassword" jdbcType="VARCHAR"/>
-        <result column="author_name" property="authorName" jdbcType="VARCHAR"/>
-        <result column="author_sex" property="authorSex" jdbcType="VARCHAR"/>
-        <result column="author_birthday" property="authorBirthday" jdbcType="DATE"/>
-        <result column="author_phone" property="authorPhone" jdbcType="VARCHAR"/>
-        <result column="author_email" property="authorEmail" jdbcType="VARCHAR"/>
-        <result column="author_photo" property="authorPhoto" jdbcType="VARCHAR"/>
-        <result column="author_state" property="authorState" jdbcType="INTEGER"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.Author">
+		<!-- WARNING - @mbg.generated -->
+		<id column="author_id" property="authorId" jdbcType="VARCHAR" />
+		<result column="author_account" property="authorAccount"
+			jdbcType="VARCHAR" />
+		<result column="author_password" property="authorPassword"
+			jdbcType="VARCHAR" />
+		<result column="author_name" property="authorName" jdbcType="VARCHAR" />
+		<result column="author_sex" property="authorSex" jdbcType="VARCHAR" />
+		<result column="author_birthday" property="authorBirthday"
+			jdbcType="DATE" />
+		<result column="author_phone" property="authorPhone" jdbcType="VARCHAR" />
+		<result column="author_email" property="authorEmail" jdbcType="VARCHAR" />
+		<result column="author_photo" property="authorPhoto" jdbcType="VARCHAR" />
+		<result column="author_state" property="authorState" jdbcType="INTEGER" />
+	</resultMap>
 </mapper>

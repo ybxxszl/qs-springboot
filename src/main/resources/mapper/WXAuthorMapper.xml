@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.WXAuthorMapper">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.WXAuthor">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="wx_author_id" property="wxAuthorId" jdbcType="VARCHAR"/>
-        <result column="wx_author_email" property="wxAuthorEmail" jdbcType="VARCHAR"/>
-        <result column="wx_author_nick_name" property="wxAuthorNickName" jdbcType="VARCHAR"/>
-        <result column="wx_author_sex" property="wxAuthorSex" jdbcType="VARCHAR"/>
-        <result column="wx_author_country" property="wxAuthorCountry" jdbcType="VARCHAR"/>
-        <result column="wx_author_city" property="wxAuthorCity" jdbcType="VARCHAR"/>
-        <result column="wx_author_province" property="wxAuthorProvince" jdbcType="VARCHAR"/>
-        <result column="wx_author_avatar_url" property="wxAuthorAvatarUrl" jdbcType="VARCHAR"/>
-        <result column="wx_author_open_id" property="wxAuthorOpenId" jdbcType="VARCHAR"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.WXAuthor">
+		<!-- WARNING - @mbg.generated -->
+		<id column="wx_author_id" property="wxAuthorId" jdbcType="VARCHAR" />
+		<result column="wx_author_email" property="wxAuthorEmail"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_nick_name" property="wxAuthorNickName"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_sex" property="wxAuthorSex" jdbcType="VARCHAR" />
+		<result column="wx_author_country" property="wxAuthorCountry"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_city" property="wxAuthorCity"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_province" property="wxAuthorProvince"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_avatar_url" property="wxAuthorAvatarUrl"
+			jdbcType="VARCHAR" />
+		<result column="wx_author_open_id" property="wxAuthorOpenId"
+			jdbcType="VARCHAR" />
+	</resultMap>
 </mapper>

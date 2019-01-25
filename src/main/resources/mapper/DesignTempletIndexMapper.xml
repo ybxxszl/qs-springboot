@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wjy.mapper.DesignTempletIndexMapper">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignTempletIndex">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="design_templet_index_id" jdbcType="VARCHAR" property="designTempletIndexId"/>
-        <result column="design_templet_index_sign" jdbcType="INTEGER" property="designTempletIndexSign"/>
-        <result column="design_templet_index_order" jdbcType="INTEGER" property="designTempletIndexOrder"/>
-        <result column="design_exercise_id" jdbcType="VARCHAR" property="designExerciseId"/>
-        <result column="design_templet_id" jdbcType="VARCHAR" property="designTempletId"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.DesignTempletIndex">
+		<!-- WARNING - @mbg.generated -->
+		<id column="design_templet_index_id" jdbcType="VARCHAR"
+			property="designTempletIndexId" />
+		<result column="design_templet_index_sign" jdbcType="INTEGER"
+			property="designTempletIndexSign" />
+		<result column="design_templet_index_order" jdbcType="INTEGER"
+			property="designTempletIndexOrder" />
+		<result column="design_exercise_id" jdbcType="VARCHAR"
+			property="designExerciseId" />
+		<result column="design_templet_id" jdbcType="VARCHAR" property="designTempletId" />
+	</resultMap>
 </mapper>

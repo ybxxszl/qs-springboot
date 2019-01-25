@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.custom.QueueTaskMapperCustom">
-    <resultMap id="BaseResultMap" type="com.wjy.pojo.QueueTask">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <id column="queue_id" property="queueId" jdbcType="VARCHAR"/>
-        <result column="queue_name" property="queueName" jdbcType="VARCHAR"/>
-        <result column="task_id" property="taskId" jdbcType="VARCHAR"/>
-        <result column="task_data" property="taskData" jdbcType="VARCHAR"/>
-        <result column="task_index" property="taskIndex" jdbcType="INTEGER"/>
-        <result column="task_state" property="taskState" jdbcType="INTEGER"/>
-    </resultMap>
+	<resultMap id="BaseResultMap" type="com.wjy.pojo.QueueTask">
+		<!-- WARNING - @mbg.generated -->
+		<id column="queue_id" property="queueId" jdbcType="VARCHAR" />
+		<result column="queue_name" property="queueName" jdbcType="VARCHAR" />
+		<result column="task_id" property="taskId" jdbcType="VARCHAR" />
+		<result column="task_data" property="taskData" jdbcType="VARCHAR" />
+		<result column="task_index" property="taskIndex" jdbcType="INTEGER" />
+		<result column="task_state" property="taskState" jdbcType="INTEGER" />
+	</resultMap>
 </mapper>
