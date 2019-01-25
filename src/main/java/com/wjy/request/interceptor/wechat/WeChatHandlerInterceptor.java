@@ -1,10 +1,9 @@
 package com.wjy.request.interceptor.wechat;
 
+import com.wjy.request.filter.RequestFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.wjy.request.filter.RequestFilter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

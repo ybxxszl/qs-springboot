@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wjy.mapper.custom.TextAnswerMapperCustom">
-	<resultMap id="BaseResultMap" type="com.wjy.pojo.TextAnswer">
-		<!-- WARNING - @mbg.generated -->
-		<id column="text_answer_id" property="textAnswerId" jdbcType="VARCHAR" />
-		<result column="design_text_id" property="designTextId"
-			jdbcType="VARCHAR" />
-		<result column="text_answer_content" property="textAnswerContent"
-			jdbcType="VARCHAR" />
-	</resultMap>
+    <resultMap id="BaseResultMap" type="com.wjy.pojo.TextAnswer">
+        <!-- WARNING - @mbg.generated -->
+        <id column="text_answer_id" property="textAnswerId" jdbcType="VARCHAR"/>
+        <result column="design_text_id" property="designTextId"
+                jdbcType="VARCHAR"/>
+        <result column="text_answer_content" property="textAnswerContent"
+                jdbcType="VARCHAR"/>
+    </resultMap>
 </mapper>

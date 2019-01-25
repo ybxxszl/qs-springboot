@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wjy.mapper.DesignCheckboxMapper">
-	<resultMap id="BaseResultMap" type="com.wjy.pojo.DesignCheckbox">
-		<!-- WARNING - @mbg.generated -->
-		<id column="design_checkbox_id" jdbcType="VARCHAR" property="designCheckboxId" />
-		<result column="design_checkbox_content" jdbcType="VARCHAR"
-			property="designCheckboxContent" />
-	</resultMap>
+    <resultMap id="BaseResultMap" type="com.wjy.pojo.DesignCheckbox">
+        <!-- WARNING - @mbg.generated -->
+        <id column="design_checkbox_id" jdbcType="VARCHAR" property="designCheckboxId"/>
+        <result column="design_checkbox_content" jdbcType="VARCHAR"
+                property="designCheckboxContent"/>
+    </resultMap>
 </mapper>
