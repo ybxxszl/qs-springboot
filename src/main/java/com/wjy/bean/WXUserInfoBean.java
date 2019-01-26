@@ -3,7 +3,7 @@ package com.wjy.bean;
 /**
  * @Date 2019/1/20
  * @Author ybxxszl
- * @Desc 微信用户信息Bean
+ * @Desc 微信用户信息实体
  **/
 public class WXUserInfoBean {
 

@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @Date 2019/1/20
  * @Author ybxxszl
- * @Desc 网站作者登录Bean
+ * @Desc 网站作者登录实体
  **/
 public class AuthorLoginBean {
 

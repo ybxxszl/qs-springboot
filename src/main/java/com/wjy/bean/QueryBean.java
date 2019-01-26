@@ -3,7 +3,7 @@ package com.wjy.bean;
 /**
  * @Date 2018/10/1
  * @Author ybxxszl
- * @Desc 查询Bean
+ * @Desc 查询实体
  **/
 public class QueryBean {
 
