@@ -3,7 +3,7 @@ package com.wjy.controller.wechat;
 import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.bean.WXAuthorRegisterBean;
-import com.wjy.bean.offical.UserInfoBean;
+import com.wjy.bean.WXUserInfoBean;
 import com.wjy.response.ResultBuilder;
 import com.wjy.service.wechat.AuthorServiceWeChat;
 import io.swagger.annotations.Api;
@@ -53,7 +53,7 @@ public class WeChatAuthorController {
 	}
 
 	@ApiOperation(value = "发送验证码")
-	@ApiImplicitParam(name = "wxAuthorEmail", value = "作者电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
+	@ApiImplicitParam(name = "wxAuthorEmail", value = "电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
 	public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
 
@@ -82,19 +82,13 @@ public class WeChatAuthorController {
 	}
 
 	@ApiOperation(value = "微信作者注册")
-	@ApiImplicitParam(name = "wxAuthorRegisterBean", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
+	@ApiImplicitParam(name = "wxAuthorRegisterBean", value = "微信作者", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
 
 		try {
 
-			String VerifyCode = "123456";/*
-											 * RedisUtil.get("verifycode:" +
-											 * wxAuthorRegisterBean.
-											 * getWxAuthorEmail())
-											 */
-
-			if (!VerifyCode.equals(wxAuthorRegisterBean.getVerifyCode())) {
+			if (!"123456".equals(wxAuthorRegisterBean.getVerifyCode())) {
 
 				throw new Exception("验证码错误，请重新输入");
 
@@ -103,9 +97,9 @@ public class WeChatAuthorController {
 			String text = WxMaCryptUtils.decrypt(wxAuthorRegisterBean.getSessionKey(),
 					wxAuthorRegisterBean.getEncryptedData(), wxAuthorRegisterBean.getIv());
 
-			UserInfoBean userInfoBean = JSONObject.parseObject(text, UserInfoBean.class);
+			WXUserInfoBean wxUserInfoBean = JSONObject.parseObject(text, WXUserInfoBean.class);
 
-			authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
+			authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), wxUserInfoBean);
 
 			return ResultBuilder.success(null, "注册成功");
 

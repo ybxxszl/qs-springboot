@@ -1,6 +1,6 @@
 package com.wjy.service.wechat;
 
-import com.wjy.bean.offical.UserInfoBean;
+import com.wjy.bean.WXUserInfoBean;
 
 import java.util.Map;
 
@@ -8,8 +8,8 @@ public interface AuthorServiceWeChat {
 
     Map<String, Object> login(String code) throws Exception;
 
-    boolean verifyEmail(String wxAuthorEmail) throws Exception;
+    boolean verifyEmail(String wxAuthorEmail);
 
-    void register(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception;
+    void register(String wxAuthorEmail, WXUserInfoBean wxUserInfoBean);
 
 }

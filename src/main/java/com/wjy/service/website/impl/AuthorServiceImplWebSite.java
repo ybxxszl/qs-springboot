@@ -6,8 +6,6 @@ import com.wjy.pojo.Author;
 import com.wjy.service.website.AuthorServiceWebSite;
 import com.wjy.util.RandomCodeUtil;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -22,57 +20,30 @@ public class AuthorServiceImplWebSite implements AuthorServiceWebSite {
     @Resource
     private AuthorMapperCustom authorMapperCustom;
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Author login(AuthorLoginBean authorLoginBean) {
 
-        try {
+        Author a = authorMapperCustom.selectAuthorByAuthorLoginBean(authorLoginBean);
 
-            Author a = authorMapperCustom.selectAuthorByAuthorLoginBean(authorLoginBean);
-
-            return a;
-
-        } catch (Exception e) {
-
-            throw e;
-
-        }
+        return a;
 
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int verify(String authorAccount) {
 
-        try {
+        int count = authorMapperCustom.countAuthorByAuthorAccount(authorAccount);
 
-            int count = authorMapperCustom.countAuthorByAuthorAccount(authorAccount);
-
-            return count;
-
-        } catch (Exception e) {
-
-            throw e;
-
-        }
+        return count;
 
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public void register(Author author) {
 
-        try {
+        author.setAuthorId(RandomCodeUtil.getUUID());
 
-            author.setAuthorId(RandomCodeUtil.getUUID());
-
-            authorMapperCustom.insertAuthorByAuthor(author);
-
-        } catch (Exception e) {
-
-            throw e;
-
-        }
+        authorMapperCustom.insertAuthorByAuthor(author);
 
     }
 

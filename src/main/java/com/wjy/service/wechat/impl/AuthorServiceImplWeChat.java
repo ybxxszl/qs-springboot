@@ -1,7 +1,7 @@
 package com.wjy.service.wechat.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.bean.offical.UserInfoBean;
+import com.wjy.bean.WXUserInfoBean;
 import com.wjy.mapper.custom.WXAuthorMapperCustom;
 import com.wjy.pojo.WXAuthor;
 import com.wjy.service.wechat.AuthorServiceWeChat;
@@ -51,7 +51,7 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
 
                 map.put("wxAuthor", mapWXAuthor);
 
-                String token = "token";/*TokenUtil.getToken(wxAuthor.getWxAuthorId())*/
+                String token = "token";
 
                 map.put("token", token);
 
@@ -72,7 +72,7 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
     }
 
     @Override
-    public boolean verifyEmail(String wxAuthorEmail) throws Exception {
+    public boolean verifyEmail(String wxAuthorEmail) {
 
         int count = wxAuthorMapperCustom.countWXAuthorByWXAuthorEmail(wxAuthorEmail);
 
@@ -89,16 +89,16 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
     }
 
     @Override
-    public void register(String wxAuthorEmail, UserInfoBean userInfoBean) throws Exception {
+    public void register(String wxAuthorEmail, WXUserInfoBean WXUserInfoBean) {
 
         String sex = "未知";
 
-        if (userInfoBean.getGender() == 1) {
+        if (WXUserInfoBean.getGender() == 1) {
 
             sex = "男";
 
         }
-        if (userInfoBean.getGender() == 2) {
+        if (WXUserInfoBean.getGender() == 2) {
 
             sex = "女";
 
@@ -108,13 +108,13 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
 
         wxAuthor.setWxAuthorId(RandomCodeUtil.getUUID());
         wxAuthor.setWxAuthorEmail(wxAuthorEmail);
-        wxAuthor.setWxAuthorNickName(userInfoBean.getNickName());
+        wxAuthor.setWxAuthorNickName(WXUserInfoBean.getNickName());
         wxAuthor.setWxAuthorSex(sex);
-        wxAuthor.setWxAuthorCountry(userInfoBean.getCountry());
-        wxAuthor.setWxAuthorCity(userInfoBean.getCity());
-        wxAuthor.setWxAuthorProvince(userInfoBean.getProvince());
-        wxAuthor.setWxAuthorAvatarUrl(userInfoBean.getAvatarUrl());
-        wxAuthor.setWxAuthorOpenId(userInfoBean.getOpenId());
+        wxAuthor.setWxAuthorCountry(WXUserInfoBean.getCountry());
+        wxAuthor.setWxAuthorCity(WXUserInfoBean.getCity());
+        wxAuthor.setWxAuthorProvince(WXUserInfoBean.getProvince());
+        wxAuthor.setWxAuthorAvatarUrl(WXUserInfoBean.getAvatarUrl());
+        wxAuthor.setWxAuthorOpenId(WXUserInfoBean.getOpenId());
 
         wxAuthorMapperCustom.insertWXAuthorByWXAuthor(wxAuthor);
 

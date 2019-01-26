@@ -28,7 +28,7 @@ public class WebSiteAuthorController {
     private AuthorServiceWebSite authorServiceWebSite;
 
     @ApiOperation(value = "网站作者登录")
-    @ApiImplicitParam(name = "authorLoginBean", value = "作者登录实体", dataType = "AuthorLoginBean", paramType = "body", required = true)
+    @ApiImplicitParam(name = "authorLoginBean", value = "网站作者登录实体", dataType = "AuthorLoginBean", paramType = "body", required = true)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultBuilder login(@RequestBody AuthorLoginBean authorLoginBean) {
 
@@ -49,7 +49,7 @@ public class WebSiteAuthorController {
     }
 
     @ApiOperation(value = "验证账号是否存在")
-    @ApiImplicitParam(name = "authorAccount", value = "作者账号", example = "admin", dataType = "String", paramType = "query", required = true)
+    @ApiImplicitParam(name = "authorAccount", value = "账号", example = "admin", dataType = "String", paramType = "query", required = true)
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     public ResultBuilder verify(@Param(value = "authorAccount") String authorAccount) {
 
@@ -70,7 +70,7 @@ public class WebSiteAuthorController {
     }
 
     @ApiOperation(value = "网站作者注册")
-    @ApiImplicitParam(name = "author", value = "作者实体", dataType = "Author", paramType = "body", required = true)
+    @ApiImplicitParam(name = "author", value = "网站作者", dataType = "Author", paramType = "body", required = true)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResultBuilder register(@RequestBody Author author) {
 

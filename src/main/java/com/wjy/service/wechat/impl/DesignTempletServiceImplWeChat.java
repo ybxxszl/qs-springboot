@@ -20,7 +20,7 @@ public class DesignTempletServiceImplWeChat implements DesignTempletServiceWeCha
     private DesignTempletMapperCustom designTempletMapperCustom;
 
     @Override
-    public List<DesignTemplet> getDesignTempletList(String searchContent, Integer pageCurrent, Integer pageSize) throws Exception {
+    public List<DesignTemplet> getDesignTempletList(String searchContent, Integer pageCurrent, Integer pageSize) {
 
         Integer itemBegin = (pageCurrent - 1) * pageSize;
         Integer itemEnd = pageCurrent * pageSize;

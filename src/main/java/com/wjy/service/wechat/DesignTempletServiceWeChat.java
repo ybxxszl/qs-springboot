@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DesignTempletServiceWeChat {
 
-    List<DesignTemplet> getDesignTempletList(String searchContent, Integer pageCurrent, Integer pageSize) throws Exception;
+    List<DesignTemplet> getDesignTempletList(String searchContent, Integer pageCurrent, Integer pageSize);
 
 }

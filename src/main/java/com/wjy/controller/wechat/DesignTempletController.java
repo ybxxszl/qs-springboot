@@ -28,7 +28,7 @@ public class DesignTempletController {
     @Autowired
     private DesignTempletServiceWeChat designTempletServiceWeChat;
 
-    @ApiOperation(value = "微信获取调查问卷")
+    @ApiOperation(value = "微信调查问卷获取")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "searchContent", value = "搜索内容", example = "searchContent", dataType = "String", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageCurrent", value = "当前页码", example = "1", dataType = "int", paramType = "query", required = true),
