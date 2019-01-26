@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.wjy.bean.offical.UserInfoBean;
 import com.wjy.bean.offical.WXAuthorRegisterBean;
 import com.wjy.response.ResultBuilder;
-import com.wjy.send.mail.VerifyCode;
 import com.wjy.service.wechat.AuthorServiceWeChat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,99 +28,95 @@ import java.util.Map;
 @RequestMapping(value = "/wechat/author")
 public class WeChatAuthorController {
 
-    @Autowired
-    private AuthorServiceWeChat authorServiceWeChat;
+	@Autowired
+	private AuthorServiceWeChat authorServiceWeChat;
 
-    private VerifyCode verifyCode = new VerifyCode();
+	@ApiOperation(value = "微信作者登录")
+	@ApiImplicitParam(name = "code", value = "临时登录凭证", example = "1234", dataType = "String", paramType = "query", required = true)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ResultBuilder login(@Param(value = "code") String code) {
 
-    @ApiOperation(value = "微信作者登录")
-    @ApiImplicitParam(name = "code", value = "临时登录凭证", example = "1234", dataType = "String", paramType = "query", required = true)
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ResultBuilder login(@Param(value = "code") String code) {
+		try {
 
-        try {
+			Map<String, Object> map = authorServiceWeChat.login(code);
 
-            Map<String, Object> map = authorServiceWeChat.login(code);
+			return ResultBuilder.success(map, null);
 
-            return ResultBuilder.success(map, null);
+		} catch (Exception e) {
 
-        } catch (Exception e) {
+			e.printStackTrace();
 
-            e.printStackTrace();
+			return ResultBuilder.error(e);
 
-            return ResultBuilder.error(e);
+		}
 
-        }
+	}
 
-    }
+	@ApiOperation(value = "发送验证码")
+	@ApiImplicitParam(name = "wxAuthorEmail", value = "作者电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
+	@RequestMapping(value = "/send", method = RequestMethod.GET)
+	public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
 
-    @ApiOperation(value = "发送验证码")
-    @ApiImplicitParam(name = "wxAuthorEmail", value = "作者电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
-    @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
+		try {
 
-        try {
+			boolean flag = authorServiceWeChat.verifyEmail(wxAuthorEmail);
 
-            boolean flag = authorServiceWeChat.verifyEmail(wxAuthorEmail);
+			if (flag) {
 
-            if (flag) {
+			} else {
 
-                if (verifyCode.send(wxAuthorEmail).getInteger("code") != 200) {
+				throw new Exception("该邮箱已注册");
 
-                    throw new Exception("验证码发送失败");
+			}
 
-                }
+			return ResultBuilder.success(null, "验证码发送成功");
 
-            } else {
+		} catch (Exception e) {
 
-                throw new Exception("该邮箱已注册");
+			e.printStackTrace();
 
-            }
+			return ResultBuilder.error(e);
 
-            return ResultBuilder.success(null, "验证码发送成功");
+		}
 
-        } catch (Exception e) {
+	}
 
-            e.printStackTrace();
+	@ApiOperation(value = "微信作者注册")
+	@ApiImplicitParam(name = "wxAuthorRegisterBean", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
 
-            return ResultBuilder.error(e);
+		try {
 
-        }
+			String VerifyCode = "123456";/*
+											 * RedisUtil.get("verifycode:" +
+											 * wxAuthorRegisterBean.
+											 * getWxAuthorEmail())
+											 */
 
-    }
+			if (!VerifyCode.equals(wxAuthorRegisterBean.getVerifyCode())) {
 
-    @ApiOperation(value = "微信作者注册")
-    @ApiImplicitParam(name = "wxAuthorRegisterBean", value = "作者注册实体", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
+				throw new Exception("验证码错误，请重新输入");
 
-        try {
+			}
 
-            String VerifyCode = "123456";/*RedisUtil.get("verifycode:" + wxAuthorRegisterBean.getWxAuthorEmail())*/
+			String text = WxMaCryptUtils.decrypt(wxAuthorRegisterBean.getSessionKey(),
+					wxAuthorRegisterBean.getEncryptedData(), wxAuthorRegisterBean.getIv());
 
-            if (!VerifyCode.equals(wxAuthorRegisterBean.getVerifyCode())) {
+			UserInfoBean userInfoBean = JSONObject.parseObject(text, UserInfoBean.class);
 
-                throw new Exception("验证码错误，请重新输入");
+			authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
 
-            }
+			return ResultBuilder.success(null, "注册成功");
 
-            String text = WxMaCryptUtils.decrypt(wxAuthorRegisterBean.getSessionKey(),
-                    wxAuthorRegisterBean.getEncryptedData(), wxAuthorRegisterBean.getIv());
+		} catch (Exception e) {
 
-            UserInfoBean userInfoBean = JSONObject.parseObject(text, UserInfoBean.class);
+			e.printStackTrace();
 
-            authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), userInfoBean);
+			return ResultBuilder.error(e);
 
-            return ResultBuilder.success(null, "注册成功");
+		}
 
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            return ResultBuilder.error(e);
-
-        }
-
-    }
+	}
 
 }
