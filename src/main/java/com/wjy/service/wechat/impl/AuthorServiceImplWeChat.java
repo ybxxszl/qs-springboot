@@ -72,7 +72,7 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
     }
 
     @Override
-    public boolean verifyEmail(String wxAuthorEmail) {
+    public boolean verify(String wxAuthorEmail) {
 
         int count = wxAuthorMapperCustom.countWXAuthorByWXAuthorEmail(wxAuthorEmail);
 

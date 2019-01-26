@@ -8,7 +8,7 @@ public interface AuthorServiceWeChat {
 
     Map<String, Object> login(String code) throws Exception;
 
-    boolean verifyEmail(String wxAuthorEmail);
+    boolean verify(String wxAuthorEmail);
 
     void register(String wxAuthorEmail, WXUserInfoBean wxUserInfoBean);
 
