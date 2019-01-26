@@ -1,6 +1,9 @@
 package com.wjy.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+
+import java.util.Map;
 
 public class TokenUtil {
 
@@ -25,27 +28,22 @@ public class TokenUtil {
 
     public static boolean verifyToken(String token) {
 
-//		String url = PropertiesUtil.getValue("token.url") + "/verifyToken";
-//		String param = "token=" + token + "&returnValue=true";
-//
-//		try {
-//
-//			JSONObject object = HttpRequestUtil.sendGet(url, param);
-//
-//			object.getObject("data", new TypeReference<Map<String, Object>>() {});
-//
-//			return true;
-//
-//		} catch (Exception e) {
-//
-//			return false;
-//
-//		}
+        String url = PropertiesUtil.getValue("token.url") + "/verifyToken";
+        String param = "token=" + token + "&returnValue=true";
 
-        if ("token".equals(token)) {
+        try {
+
+            JSONObject object = HttpRequestUtil.sendGet(url, param);
+
+            object.getObject("data", new TypeReference<Map<String, Object>>() {
+            });
+
             return true;
-        } else {
+
+        } catch (Exception e) {
+
             return false;
+
         }
 
     }

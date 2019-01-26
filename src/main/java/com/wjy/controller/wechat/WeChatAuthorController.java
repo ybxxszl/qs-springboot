@@ -59,7 +59,7 @@ public class WeChatAuthorController {
 
         try {
 
-            boolean flag = authorServiceWeChat.verifyEmail(wxAuthorEmail);
+            boolean flag = authorServiceWeChat.verify(wxAuthorEmail);
 
             if (flag) {
 
