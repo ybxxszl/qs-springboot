@@ -1,6 +1,6 @@
 package com.wjy.service.website.impl;
 
-import com.wjy.bean.offical.AuthorLoginBean;
+import com.wjy.bean.AuthorLoginBean;
 import com.wjy.mapper.custom.AuthorMapperCustom;
 import com.wjy.pojo.Author;
 import com.wjy.service.website.AuthorServiceWebSite;

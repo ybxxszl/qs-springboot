@@ -1,6 +1,6 @@
 package com.wjy.service.website;
 
-import com.wjy.bean.offical.AuthorLoginBean;
+import com.wjy.bean.AuthorLoginBean;
 import com.wjy.pojo.Author;
 
 public interface AuthorServiceWebSite {

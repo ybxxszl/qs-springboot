@@ -1,6 +1,11 @@
-package com.wjy.bean.offical;
+package com.wjy.bean;
 
-public class UserInfoBean {
+/**
+ * @Date 2019/1/20
+ * @Author ybxxszl
+ * @Desc 微信用户信息Bean
+ **/
+public class WXUserInfoBean {
 
     private String nickName;
     private Integer gender;
@@ -9,22 +14,6 @@ public class UserInfoBean {
     private String province;
     private String avatarUrl;
     private String openId;
-
-    public UserInfoBean() {
-        super();
-    }
-
-    public UserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
-                        String openId) {
-        super();
-        this.nickName = nickName;
-        this.gender = gender;
-        this.country = country;
-        this.city = city;
-        this.province = province;
-        this.avatarUrl = avatarUrl;
-        this.openId = openId;
-    }
 
     public String getNickName() {
         return nickName;
@@ -82,9 +71,25 @@ public class UserInfoBean {
         this.openId = openId;
     }
 
+    public WXUserInfoBean() {
+        super();
+    }
+
+    public WXUserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
+                          String openId) {
+        super();
+        this.nickName = nickName;
+        this.gender = gender;
+        this.country = country;
+        this.city = city;
+        this.province = province;
+        this.avatarUrl = avatarUrl;
+        this.openId = openId;
+    }
+
     @Override
     public String toString() {
-        return "UserInfoBean{" +
+        return "WXUserInfoBean{" +
                 "nickName='" + nickName + '\'' +
                 ", gender=" + gender +
                 ", country='" + country + '\'' +

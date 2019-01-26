@@ -1,7 +1,7 @@
 package com.wjy.mapper.custom;
 
 import com.wjy.GeneralMapper;
-import com.wjy.bean.offical.AuthorLoginBean;
+import com.wjy.bean.AuthorLoginBean;
 import com.wjy.pojo.Author;
 
 public interface AuthorMapperCustom extends GeneralMapper<Author> {

@@ -1,6 +1,6 @@
 package com.wjy.controller.website;
 
-import com.wjy.bean.offical.AuthorLoginBean;
+import com.wjy.bean.AuthorLoginBean;
 import com.wjy.pojo.Author;
 import com.wjy.response.ResultBuilder;
 import com.wjy.service.website.AuthorServiceWebSite;

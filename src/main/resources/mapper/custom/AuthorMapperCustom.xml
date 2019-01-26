@@ -18,7 +18,7 @@
         <result column="author_state" property="authorState" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="selectAuthorByAuthorLoginBean" parameterType="com.wjy.bean.offical.AuthorLoginBean"
+    <select id="selectAuthorByAuthorLoginBean" parameterType="com.wjy.bean.AuthorLoginBean"
             resultMap="BaseResultMap">
         SELECT
         author_id, author_account, author_password,
