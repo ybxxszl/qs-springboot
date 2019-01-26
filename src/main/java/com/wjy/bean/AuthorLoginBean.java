@@ -15,6 +15,14 @@ public class AuthorLoginBean {
     @ApiModelProperty(value = "密码", example = "1234", hidden = false)
     private String authorPassword;
 
+    public AuthorLoginBean() {
+    }
+
+    public AuthorLoginBean(String authorAccount, String authorPassword) {
+        this.authorAccount = authorAccount;
+        this.authorPassword = authorPassword;
+    }
+
     public String getAuthorAccount() {
         return authorAccount;
     }
@@ -28,14 +36,6 @@ public class AuthorLoginBean {
     }
 
     public void setAuthorPassword(String authorPassword) {
-        this.authorPassword = authorPassword;
-    }
-
-    public AuthorLoginBean() {
-    }
-
-    public AuthorLoginBean(String authorAccount, String authorPassword) {
-        this.authorAccount = authorAccount;
         this.authorPassword = authorPassword;
     }
 

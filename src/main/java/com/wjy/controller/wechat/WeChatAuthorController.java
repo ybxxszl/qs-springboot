@@ -28,89 +28,89 @@ import java.util.Map;
 @RequestMapping(value = "/wechat/author")
 public class WeChatAuthorController {
 
-	@Autowired
-	private AuthorServiceWeChat authorServiceWeChat;
+    @Autowired
+    private AuthorServiceWeChat authorServiceWeChat;
 
-	@ApiOperation(value = "微信作者登录")
-	@ApiImplicitParam(name = "code", value = "临时登录凭证", example = "1234", dataType = "String", paramType = "query", required = true)
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ResultBuilder login(@Param(value = "code") String code) {
+    @ApiOperation(value = "微信作者登录")
+    @ApiImplicitParam(name = "code", value = "临时登录凭证", example = "1234", dataType = "String", paramType = "query", required = true)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ResultBuilder login(@Param(value = "code") String code) {
 
-		try {
+        try {
 
-			Map<String, Object> map = authorServiceWeChat.login(code);
+            Map<String, Object> map = authorServiceWeChat.login(code);
 
-			return ResultBuilder.success(map, null);
+            return ResultBuilder.success(map, null);
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
+            e.printStackTrace();
 
-			return ResultBuilder.error(e);
+            return ResultBuilder.error(e);
 
-		}
+        }
 
-	}
+    }
 
-	@ApiOperation(value = "发送验证码")
-	@ApiImplicitParam(name = "wxAuthorEmail", value = "电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
-	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
+    @ApiOperation(value = "发送验证码")
+    @ApiImplicitParam(name = "wxAuthorEmail", value = "电子邮件", example = "1062837400@qq.com", dataType = "String", paramType = "query", required = true)
+    @RequestMapping(value = "/send", method = RequestMethod.GET)
+    public ResultBuilder send(@Param(value = "wxAuthorEmail") String wxAuthorEmail) {
 
-		try {
+        try {
 
-			boolean flag = authorServiceWeChat.verifyEmail(wxAuthorEmail);
+            boolean flag = authorServiceWeChat.verifyEmail(wxAuthorEmail);
 
-			if (flag) {
+            if (flag) {
 
-			} else {
+            } else {
 
-				throw new Exception("该邮箱已注册");
+                throw new Exception("该邮箱已注册");
 
-			}
+            }
 
-			return ResultBuilder.success(null, "验证码发送成功");
+            return ResultBuilder.success(null, "验证码发送成功");
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
+            e.printStackTrace();
 
-			return ResultBuilder.error(e);
+            return ResultBuilder.error(e);
 
-		}
+        }
 
-	}
+    }
 
-	@ApiOperation(value = "微信作者注册")
-	@ApiImplicitParam(name = "wxAuthorRegisterBean", value = "微信作者", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
+    @ApiOperation(value = "微信作者注册")
+    @ApiImplicitParam(name = "wxAuthorRegisterBean", value = "微信作者", dataType = "WXAuthorRegisterBean", paramType = "body", required = true)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResultBuilder register(@RequestBody WXAuthorRegisterBean wxAuthorRegisterBean) {
 
-		try {
+        try {
 
-			if (!"123456".equals(wxAuthorRegisterBean.getVerifyCode())) {
+            if (!"123456".equals(wxAuthorRegisterBean.getVerifyCode())) {
 
-				throw new Exception("验证码错误，请重新输入");
+                throw new Exception("验证码错误，请重新输入");
 
-			}
+            }
 
-			String text = WxMaCryptUtils.decrypt(wxAuthorRegisterBean.getSessionKey(),
-					wxAuthorRegisterBean.getEncryptedData(), wxAuthorRegisterBean.getIv());
+            String text = WxMaCryptUtils.decrypt(wxAuthorRegisterBean.getSessionKey(),
+                    wxAuthorRegisterBean.getEncryptedData(), wxAuthorRegisterBean.getIv());
 
-			WXUserInfoBean wxUserInfoBean = JSONObject.parseObject(text, WXUserInfoBean.class);
+            WXUserInfoBean wxUserInfoBean = JSONObject.parseObject(text, WXUserInfoBean.class);
 
-			authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), wxUserInfoBean);
+            authorServiceWeChat.register(wxAuthorRegisterBean.getWxAuthorEmail(), wxUserInfoBean);
 
-			return ResultBuilder.success(null, "注册成功");
+            return ResultBuilder.success(null, "注册成功");
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			e.printStackTrace();
+            e.printStackTrace();
 
-			return ResultBuilder.error(e);
+            return ResultBuilder.error(e);
 
-		}
+        }
 
-	}
+    }
 
 }

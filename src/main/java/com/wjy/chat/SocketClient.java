@@ -1,5 +1,9 @@
 package com.wjy.chat;
 
+import com.alibaba.fastjson.JSONObject;
+import com.wjy.util.PropertiesUtil;
+import com.wjy.util.RandomCodeUtil;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,138 +13,134 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.alibaba.fastjson.JSONObject;
-import com.wjy.util.PropertiesUtil;
-import com.wjy.util.RandomCodeUtil;
-
 public class SocketClient {
 
-	private static final String HOST = PropertiesUtil.getStringValue("socket.server.host");
-	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+    private static final String HOST = PropertiesUtil.getStringValue("socket.server.host");
+    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-	private static final String ID = RandomCodeUtil.getUUID();
-	private static final String NAME = "玩家" + RandomCodeUtil.getUUID();
+    private static final String ID = RandomCodeUtil.getUUID();
+    private static final String NAME = "玩家" + RandomCodeUtil.getUUID();
 
-	static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-	private Socket socket = null;
-	private InputStream is = null;
-	private BufferedReader br = null;
-	private PrintWriter pw = null;
-	private boolean state = true;
-	private boolean run = true;
+    private Socket socket = null;
+    private InputStream is = null;
+    private BufferedReader br = null;
+    private PrintWriter pw = null;
+    private boolean state = true;
+    private boolean run = true;
 
-	public SocketClient() {
+    public SocketClient() {
 
-		try {
+        try {
 
-			socket = new Socket(HOST, PORT);
+            socket = new Socket(HOST, PORT);
 
-			is = socket.getInputStream();
-			br = new BufferedReader(new InputStreamReader(is));
-			pw = new PrintWriter(socket.getOutputStream(), true);
+            is = socket.getInputStream();
+            br = new BufferedReader(new InputStreamReader(is));
+            pw = new PrintWriter(socket.getOutputStream(), true);
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			run = false;
+            run = false;
 
-			if ("Connection refused: connect".equals(e.getMessage())) {
-				System.out.println("服务尚未运行");
-			} else {
-				e.printStackTrace();
-			}
-		}
+            if ("Connection refused: connect".equals(e.getMessage())) {
+                System.out.println("服务尚未运行");
+            } else {
+                e.printStackTrace();
+            }
+        }
 
-	}
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SocketClient client = new SocketClient();
+        SocketClient client = new SocketClient();
 
-		client.listen();
+        client.listen();
 
-	}
+    }
 
-	public void listen() {
+    public void listen() {
 
-		if (run) {
+        if (run) {
 
-			Thread t = new Thread(new Runnable() {
+            Thread t = new Thread(new Runnable() {
 
-				@Override
-				public void run() {
+                @Override
+                public void run() {
 
-					while (state) {
+                    while (state) {
 
-						try {
+                        try {
 
-							byte[] b = new byte[1024];
+                            byte[] b = new byte[1024];
 
-							int length = is.read(b);
+                            int length = is.read(b);
 
-							String msg = new String(b, 0, length);
+                            String msg = new String(b, 0, length);
 
-							System.out.println(msg);
+                            System.out.println(msg);
 
-						} catch (Exception e) {
+                        } catch (Exception e) {
 
-							if ("Connection reset".equals(e.getMessage())) {
+                            if ("Connection reset".equals(e.getMessage())) {
 
-								System.out.println("服务已停止");
+                                System.out.println("服务已停止");
 
-								System.exit(1);
+                                System.exit(1);
 
-							} else if ("Socket closed".equals(e.getMessage())) {
-								System.out.println("聊天已退出");
-							} else {
-								e.printStackTrace();
-							}
+                            } else if ("Socket closed".equals(e.getMessage())) {
+                                System.out.println("聊天已退出");
+                            } else {
+                                e.printStackTrace();
+                            }
 
-						}
+                        }
 
-					}
+                    }
 
-				}
+                }
 
-			});
+            });
 
-			t.start();
+            t.start();
 
-			pw.println(JSONObject.toJSONString(
-					new MsgBean(ID, NAME, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 1)));
+            pw.println(JSONObject.toJSONString(
+                    new MsgBean(ID, NAME, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 1)));
 
-			System.out.println(NAME + "，输入exit退出");
+            System.out.println(NAME + "，输入exit退出");
 
-			while (state) {
+            while (state) {
 
-				String content = scanner.nextLine();
+                String content = scanner.nextLine();
 
-				if (!"exit".equals(content)) {
+                if (!"exit".equals(content)) {
 
-					pw.println(JSONObject.toJSONString(new MsgBean(ID, NAME, content,
-							new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 2)));
+                    pw.println(JSONObject.toJSONString(new MsgBean(ID, NAME, content,
+                            new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 2)));
 
-				} else {
+                } else {
 
-					pw.println(JSONObject.toJSONString(new MsgBean(ID, NAME, content,
-							new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 3)));
+                    pw.println(JSONObject.toJSONString(new MsgBean(ID, NAME, content,
+                            new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()), 3)));
 
-					state = false;
+                    state = false;
 
-					try {
-						br.close();
-						pw.close();
-						socket.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+                    try {
+                        br.close();
+                        pw.close();
+                        socket.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-				}
+                }
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
 }

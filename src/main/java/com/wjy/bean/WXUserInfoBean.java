@@ -15,6 +15,22 @@ public class WXUserInfoBean {
     private String avatarUrl;
     private String openId;
 
+    public WXUserInfoBean() {
+        super();
+    }
+
+    public WXUserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
+                          String openId) {
+        super();
+        this.nickName = nickName;
+        this.gender = gender;
+        this.country = country;
+        this.city = city;
+        this.province = province;
+        this.avatarUrl = avatarUrl;
+        this.openId = openId;
+    }
+
     public String getNickName() {
         return nickName;
     }
@@ -68,22 +84,6 @@ public class WXUserInfoBean {
     }
 
     public void setOpenId(String openId) {
-        this.openId = openId;
-    }
-
-    public WXUserInfoBean() {
-        super();
-    }
-
-    public WXUserInfoBean(String nickName, Integer gender, String country, String city, String province, String avatarUrl,
-                          String openId) {
-        super();
-        this.nickName = nickName;
-        this.gender = gender;
-        this.country = country;
-        this.city = city;
-        this.province = province;
-        this.avatarUrl = avatarUrl;
         this.openId = openId;
     }
 
