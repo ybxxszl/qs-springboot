@@ -1,4 +1,4 @@
-package com.wjy.thread;
+package com.wjy.global;
 
 /**
  * 定义线程变量

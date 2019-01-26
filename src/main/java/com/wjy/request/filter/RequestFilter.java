@@ -1,7 +1,7 @@
 package com.wjy.request.filter;
 
-import com.wjy.thread.ThreadLocalEnv;
-import com.wjy.thread.ThreadLocalVar;
+import com.wjy.global.ThreadLocalEnv;
+import com.wjy.global.ThreadLocalVar;
 import com.wjy.util.TokenUtil;
 import org.springframework.stereotype.Component;
 
