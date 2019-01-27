@@ -16,26 +16,29 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SystemWebMvcConfigurer implements WebMvcConfigurer {
 
-    @Autowired
-    private WebSiteHandlerInterceptor websiteHandlerInterceptor;
+	@Autowired
+	private WebSiteHandlerInterceptor websiteHandlerInterceptor;
 
-    @Autowired
-    private WeChatHandlerInterceptor wechatHandlerInterceptor;
+	@Autowired
+	private WeChatHandlerInterceptor wechatHandlerInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(websiteHandlerInterceptor).addPathPatterns("/website/**");
+		// 网站请求路径
+		registry.addInterceptor(websiteHandlerInterceptor).addPathPatterns("/website/**");
 
-        registry.addInterceptor(wechatHandlerInterceptor).addPathPatterns("/wechat/**");
+		// 微信请求路径
+		registry.addInterceptor(wechatHandlerInterceptor).addPathPatterns("/wechat/**");
 
-    }
+	}
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+		// Swagger API
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 
-    }
+	}
 
 }

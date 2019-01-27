@@ -1,4 +1,4 @@
-package com.wjy.chat;
+package com.wjy.chat.socket;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.util.PropertiesUtil;

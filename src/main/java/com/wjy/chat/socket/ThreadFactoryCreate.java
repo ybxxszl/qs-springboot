@@ -1,4 +1,4 @@
-package com.wjy.chat;
+package com.wjy.chat.socket;
 
 import java.util.concurrent.ThreadFactory;
 
