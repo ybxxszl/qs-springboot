@@ -18,7 +18,7 @@ public class NettyServer {
 		EventLoopGroup bossGroup = new NioEventLoopGroup(); // 接收已进来的连接
 		EventLoopGroup workGroup = new NioEventLoopGroup(); // 处理已进来的连接
 
-		System.out.println("监听端口：" + PORT);
+		// System.out.println("监听端口：" + PORT);
 
 		try {
 
