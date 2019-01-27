@@ -9,109 +9,129 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * socket连接服务
+ * 
+ * @author wjy
+ * @date 2019年1月27日
+ */
 public class ConnectServer implements Runnable {
 
-    private List<ConnectServer> connects = new ArrayList<ConnectServer>();
+	private List<ConnectServer> connects = new ArrayList<ConnectServer>();
 
-    private Socket socket = null;
-    private BufferedReader br = null;
-    private PrintWriter pw = null;
-    private boolean state = true;
-    private String name;
+	private Socket socket = null;
+	private BufferedReader br = null;
+	private PrintWriter pw = null;
+	private boolean state = true;
+	private String name;
 
-    public ConnectServer(Socket socket, List<ConnectServer> connects) {
+	/**
+	 * 创建连接 加入聊天
+	 * 
+	 * @param socket
+	 * @param connects
+	 */
+	public ConnectServer(Socket socket, List<ConnectServer> connects) {
 
-        this.socket = socket;
+		this.socket = socket;
 
-        this.connects = connects;
+		this.connects = connects;
 
-        try {
+		try {
 
-            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            pw = new PrintWriter(socket.getOutputStream(), true);
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			pw = new PrintWriter(socket.getOutputStream(), true);
 
-            String msg = br.readLine();
+			String msg = br.readLine();
 
-            MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
+			MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
 
-            name = bean.getName();
+			name = bean.getName();
 
-            String content = name + " 加入聊天";
+			String content = name + " 加入聊天";
 
-            System.out.println(content);
+			System.out.println(content);
 
-            connects.add(this);
+			connects.add(this);
 
-            show(content);
+			show(content);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    }
+	}
 
-    @Override
-    public void run() {
+	/**
+	 * 读取客户端发送消息，包括退出聊天
+	 */
+	@Override
+	public void run() {
 
-        try {
+		try {
 
-            String msg = null;
+			String msg = null;
 
-            while (state) {
+			while (state) {
 
-                msg = br.readLine();
+				msg = br.readLine();
 
-                MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
+				MsgBean bean = JSONObject.parseObject(msg, MsgBean.class);
 
-                String content = null;
+				String content = null;
 
-                if (bean.getType() == 3) {
+				if (bean.getType() == 3) {
 
-                    content = name + " 退出聊天";
+					content = name + " 退出聊天";
 
-                    state = false;
+					state = false;
 
-                    connects.remove(this);
+					connects.remove(this);
 
-                } else {
-                    content = name + " 说：" + bean.getContent();
-                }
+				} else {
+					content = name + " 说：" + bean.getContent();
+				}
 
-                System.out.println(content);
+				System.out.println(content);
 
-                show(content);
+				show(content);
 
-            }
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 
-            try {
-                br.close();
-                pw.close();
-                socket.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+			try {
+				br.close();
+				pw.close();
+				socket.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-        }
+		}
 
-    }
+	}
 
-    private void show(String content) {
+	/**
+	 * 将消息发送给其他客户端
+	 * 
+	 * @param content
+	 */
+	private void show(String content) {
 
-        for (ConnectServer server : connects) {
+		for (ConnectServer server : connects) {
 
-            if (name != server.name) {
+			if (name != server.name) {
 
-                server.pw.print(content);
-                server.pw.flush();
+				server.pw.print(content);
+				server.pw.flush();
 
-            }
+			}
 
-        }
+		}
 
-    }
+	}
 
 }

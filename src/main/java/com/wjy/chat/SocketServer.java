@@ -10,56 +10,88 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * socket服务
+ * 
+ * @author wjy
+ * @date 2019年1月27日
+ */
 public class SocketServer {
 
-    private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
+	private static final Integer PORT = PropertiesUtil.getIntegerValue("socket.server.port");
 
-    static List<ConnectServer> connects = new ArrayList<ConnectServer>();
+	/*
+	 * 记录连接socket服务的客户端信息
+	 */
+	static List<ConnectServer> connects = new ArrayList<ConnectServer>();
 
-    static ThreadPoolExecutor executor = new ThreadPoolExecutor(ThreadParams.COREPOOLSIZE, ThreadParams.MAXIMUMPOOLSIZE,
-            ThreadParams.KEEPALIVETIME, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
-            new ThreadFactoryCreate());
+	/*
+	 * 线程池
+	 */
+	static ThreadPoolExecutor executor = new ThreadPoolExecutor(ThreadParams.COREPOOLSIZE, ThreadParams.MAXIMUMPOOLSIZE,
+			ThreadParams.KEEPALIVETIME, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
+			new ThreadFactoryCreate());
 
-    public static void main(String[] args) {
+	/**
+	 * 1、启动服务，监听端口 2、等待客户端连接端口
+	 */
+	private void run() {
 
-        SocketServer server = new SocketServer();
+		ServerSocket server = null;
 
-        server.run();
+		try {
 
-    }
+			server = new ServerSocket(PORT);
 
-    private void run() {
+			System.out.println("聊天等待中");
 
-        ServerSocket server = null;
+			while (true) {
 
-        try {
+				Socket socket = server.accept();
 
-            server = new ServerSocket(PORT);
+				// 如果socket.close()时，数据没有发送完成，逗留10s
+				socket.setSoLinger(true, 10000);
 
-            System.out.println("聊天等待中");
+				// 设置连接存活
+				// 如果两个小时没有数据传输，那么服务端自动发送保持存活的消息到客户端，没有响应，关闭连接
+				socket.setKeepAlive(true);
 
-            while (true) {
+				// 设置立即发送数据
+				socket.setTcpNoDelay(true);
 
-                Socket socket = server.accept();
+				// 设置接收缓冲大小，默认为8K
+				// socket.setReceiveBufferSize(size);
+				// 设置发送缓冲大小，默认为8K
+				// socket.setSendBufferSize(size);
 
-                System.out.println("发现新玩家");
+				System.out.println("发现新玩家");
 
-                ConnectServer connectServer = new ConnectServer(socket, connects);
+				// 为每一个连接服务的客户端设置一个连接服务
+				ConnectServer connectServer = new ConnectServer(socket, connects);
 
-                executor.execute(connectServer);
+				// 放入线程池中运行
+				executor.execute(connectServer);
 
-            }
+			}
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-            if ("Address already in use: JVM_Bind".equals(e.getMessage())) {
-                System.out.println("端口已占用");
-            } else {
-                e.printStackTrace();
-            }
+			if ("Address already in use: JVM_Bind".equals(e.getMessage())) {
+				System.out.println("端口已占用");
+			} else {
+				e.printStackTrace();
+			}
 
-        }
+		}
 
-    }
+	}
+
+	public static void main(String[] args) {
+
+		SocketServer server = new SocketServer();
+
+		server.run();
+
+	}
 
 }
