@@ -6,6 +6,7 @@ import com.wjy.mapper.custom.WXAuthorMapperCustom;
 import com.wjy.pojo.WXAuthor;
 import com.wjy.service.wechat.AuthorServiceWeChat;
 import com.wjy.util.RandomCodeUtil;
+import com.wjy.util.TokenUtil;
 import com.wjy.util.WeChatUtil;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,7 @@ public class AuthorServiceImplWeChat implements AuthorServiceWeChat {
 
                 map.put("wxAuthor", mapWXAuthor);
 
-                String token = "token";
+                String token = TokenUtil.getToken(wxAuthor.getWxAuthorId());
 
                 map.put("token", token);
 
